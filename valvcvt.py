@@ -49,11 +49,15 @@ def main():
         print("Error: Bad input file format (%s)" % err)
         sys.exit(1)
 
-    # objectify.deannotate(new_dom, cleanup_namespaces=True)
+    # objectify.deannotate(new_dom, cleanup_namespaces = True)
 
     # ----------------------------------
+    tag = ''
     for wb in new_dom.xpath('//xmlns:Workbook', namespaces = ns_xsl):
-        print(wb.attrib)
+        tag = wb.tag
+    print(tag)    
+    etree.strip_tags(new_dom, tag)
+
 #        if (tab.tail == '\n\n'):
 #            tab.tail = '\n'
 #
@@ -84,6 +88,8 @@ def main():
 
     try:
         with open(out_fname, 'w') as out_file:
+            out_file.write('<?xml version="1.0" encoding="utf-8"?>\n')
+            out_file.write('<?mso-application progid="Excel.Sheet"?>')
             out_file.write(out_data)
     except Exception as err:
         print("Error: Unable to write file %s (%s)" % (out_fname, err))
