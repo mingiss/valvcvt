@@ -52,11 +52,16 @@ def main():
     # objectify.deannotate(new_dom, cleanup_namespaces = True)
 
     # ----------------------------------
-    tag = ''
-    for wb in new_dom.xpath('//xmlns:Workbook', namespaces = ns_xsl):
+    # for wb in new_dom.xpath('//xmlns:Workbook', namespaces = ns_xsl):
         tag = wb.tag
-    print(tag)    
-    etree.strip_tags(new_dom, tag)
+
+    # ----------------------------------
+    # delete empty cells at the end of the rows
+    for row in new_dom.xpath('//xmlns:Row', namespaces = ns_xsl):
+        for cell in reversed(row.xpath('xmlns:Cell', namespaces = ns_xsl)):
+            if (cell.tail or cell.text or list(cell)):
+                break
+            row.remove(cell)
 
 #        if (tab.tail == '\n\n'):
 #            tab.tail = '\n'
@@ -88,7 +93,7 @@ def main():
 
     try:
         with open(out_fname, 'w') as out_file:
-            out_file.write('<?xml version="1.0" encoding="utf-8"?>\n')
+            out_file.write('<?xml version="1.0" encoding="UTF-8"?>\n')
             out_file.write('<?mso-application progid="Excel.Sheet"?>')
             out_file.write(out_data)
     except Exception as err:
