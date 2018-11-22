@@ -63,27 +63,27 @@ def main():
                 break
             row.remove(cell)
 
-#        if (tab.tail == '\n\n'):
-#            tab.tail = '\n'
-#
-#    for row in new_dom.xpath('//row'):
-#        if (row.text and not row.text.strip()):
-#            row.text = ''
-#
-#    for entry in new_dom.xpath('//row/entry'):
-#        if (entry.tail and not entry.tail.strip()):
-#            entry.tail = ''
-#        char = entry.get('char')
-#        if (char and (ord(char) > 127)):
-#            entry.set('char', '?')
-#
-#    for tag in new_dom.iter():
-#        attrs = dict(tag.attrib) 
-#        tag.attrib.clear()
-#        attr_keys = attrs.keys()
-#        for key in sorted(attr_keys):
-#            tag.set(key, attrs[key])
-    
+    # delete empty rows at the end of the tables    
+    for tab in new_dom.xpath('//xmlns:Table', namespaces = ns_xsl):
+        for row in reversed(tab.xpath('xmlns:Row', namespaces = ns_xsl)):
+            if (row.tail or row.text or list(row)):
+                break
+            tab.remove(row)
+
+    # collect dictionary of used styles
+    used_styles = {}
+    for cell in new_dom.xpath('//xmlns:Cell', namespaces = ns_xsl):
+        used_styles[cell.get(ns_pref + 'StyleID')] = True
+
+    #for nod in new_dom.xpath('//*'):
+    #    if (nod.get(ns_pref + 'StyleID') and (nod.tag != ns_pref + 'Cell')):
+    #        print(nod.tag + ' ' + nod.get(ns_pref + 'StyleID'))
+
+    # delete unused styles
+    for sty in new_dom.xpath('//xmlns:Style', namespaces = ns_xsl):
+        if (sty.get(ns_pref + 'ID') not in used_styles.keys()):
+            sty.getparent().remove(sty)
+
     # ----------------------------------
     try:
         out_data = etree.tostring(new_dom).decode()
