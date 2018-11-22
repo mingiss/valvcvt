@@ -52,10 +52,6 @@ def main():
     # objectify.deannotate(new_dom, cleanup_namespaces = True)
 
     # ----------------------------------
-    # for wb in new_dom.xpath('//xmlns:Workbook', namespaces = ns_xsl):
-        tag = wb.tag
-
-    # ----------------------------------
     # delete empty cells at the end of the rows
     for row in new_dom.xpath('//xmlns:Row', namespaces = ns_xsl):
         for cell in reversed(row.xpath('xmlns:Cell', namespaces = ns_xsl)):
