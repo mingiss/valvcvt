@@ -5,4 +5,6 @@ TODO list
 
 1. Move deletion of emty cells to `xlslib`.
 
-1. Make converter from `xlsx.xml` to `html`.
+1. Make `xlsx2htm` &ndash; converter from `xlsx.xml` to `html`.
+
+1. Move empty cells deletion to separate tool `xslxtrim`. 
