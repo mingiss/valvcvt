@@ -1,16 +1,19 @@
 #!/usr/bin/python
 # coding=UTF-8
-__author__ = "Mindaugas Piešina"
-__version__ = "0.0.1"
-__maintainer__ = ""
-__email__ = "mpiesina@netscape.net"
-__status__ = "Development"
 
 """
-Script to strip empty cells out of OpenOffice Calc exported xml file
-using:
+valvcvt.py
+
+Strip empty cells out of OpenOffice Calc exported xml file.
+
+Using:
     python valvcvt.py input.xml output.xml
 """
+
+__author__ = "Mindaugas Piešina"
+__version__ = "0.0.1"
+__email__ = "mpiesina@netscape.net"
+__status__ = "Prototype"
 
 import sys
 import codecs
@@ -59,7 +62,7 @@ def main():
                 break
             row.remove(cell)
 
-    # delete empty rows at the end of the tables    
+    # delete empty rows at the end of the tables
     for tab in new_dom.xpath('//xmlns:Table', namespaces = ns_xsl):
         for row in reversed(tab.xpath('xmlns:Row', namespaces = ns_xsl)):
             if (row.tail or row.text or list(row)):
@@ -98,4 +101,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
