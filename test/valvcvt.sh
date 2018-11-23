@@ -1,5 +1,7 @@
 #! /bin/bash
 
+export PYTHONPATH=../lib:$PYTHONPATH
+
 # head -c 1000 "2-way ball valves flangeable with SAE connections.xlsx.xml" > zzz.txt
 
 # tidy "2-way ball valves flangeable with SAE connections.xlsx.xml" 2-way_ball.orig.tidy.xml
