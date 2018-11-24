@@ -32,7 +32,7 @@ from xlstree import ns_pref
 class valvtree(xlstree):
     '''xlsx.xml tools localized to valvcvt'''
 
-    def del_heads(self):
+    def del_hats(self):
         '''removes heading rows after the last spanned heading'''
         for tab in self.dom.xpath('//xmlns:Table', namespaces = ns_xsl):
             prev_spanned = False
@@ -51,6 +51,31 @@ class valvtree(xlstree):
                     row.getparent().remove(row)
                 prev_spanned = row_spanned
 
+    def insert_heads(self):
+        '''inserts first level heads, if absent'''
+        for tab in self.dom.xpath('//xmlns:Table', namespaces = ns_xsl):
+            second_spanned = False
+            for row in tab.xpath('xmlns:Row', namespaces = ns_xsl):
+                cells = row.xpath('xmlns:Cell', namespaces = ns_xsl)
+                if (len(cells) > 1):
+                    cell = cells[1]
+                    try:
+                        span = int(cell.get(ns_pref + 'MergeAcross'))
+                        if (span > 1):
+                            second_spanned = True
+                            break
+                    except:
+                        pass
+            if (not second_spanned):
+                # there were no second level headings -- the whole table is shifted left
+                # for instance, in file 2-way ball valves flangeable with SAE connections.xlsx.xml (sheet KH-SAE Steel)
+                # file Cartridge ball valves.xlsx.xml has no headings at all (the method should be applyed twice)
+                # just moving the table to right by one cell
+                for row in tab.xpath('xmlns:Row', namespaces = ns_xsl):
+                    new_cell = etree.Element(ns_pref + 'Cell')
+                    row.insert(0, new_cell)
+
+
     def spread_heads(self):
         '''spreads second level headings to first column of each section row'''
         for tab in self.dom.xpath('//xmlns:Table', namespaces = ns_xsl):
@@ -64,10 +89,7 @@ class valvtree(xlstree):
                         span = int(cell.get(ns_pref + 'MergeAcross'))
                         if (span > 1):
                             cell_text = ''.join(cell.xpath('.//text()'))
-                            if (cell_text != 'UNC'):
-                                heading = ''.join(cell.xpath('.//text()'))
-                            else:
-                                print('Removed heading: ' + cell_text)
+                            heading = ''.join(cell.xpath('.//text()'))
                             second_spanned = True
                     except:
                         pass
@@ -100,7 +122,9 @@ def main():
 
     # ----------------------------------
     tree.trim()
-    tree.del_heads()
+    # tree.insert_heads() # for tables with second level headings solely
+    # tree.insert_heads() # for tables without headings
+    tree.del_hats()
     tree.spread_heads()
     tree.spread_heads() # first level heads at the moment are shifted to the right as if being second level
 
