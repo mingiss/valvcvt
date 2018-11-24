@@ -1,6 +1,7 @@
 #! /bin/bash
 
-# script to delete trailing empty cells and rows from all xslx.xml files in subfolder orig and put them to subfolder trimmed
+# script to delete trailing empty cells and rows from xslx.xml files
+# source files should be placed to subfolder orig, output is written to subfolder trimmed
 
 # cd orig
 # mv "2-way ball valves flangeable with SAE connections.xlsx.xml"                              2-way_ball_valves_flangeable_with_SAE_connections.xlsx.xml
@@ -21,22 +22,18 @@
 # mv "Cartridge ball valves.xlsx.xml"                                                          Cartridge_ball_valves.xlsx.xml
 # cd ..
 
-valvcvt_path=../src/valvcvt
+valvcvt_path=..
 export PYTHONPATH=$valvcvt_path/lib:$PYTHONPATH
 
 mkdir trimmed
 
-ls orig > files_orig.txt
-
 # file_list=`ls orig`
-# file_list=`sed "s/^/\"/g" < files_orig.txt | sed  "s/\$/\"/g"`
-# file_list=`sed "s/ /\\\\ /g" < files_orig.txt`
-file_list=`sed "s/ /_/g" < files_orig.txt`
+# file_list=`ls orig | sed "s/^/\"/g" | sed  "s/\$/\"/g"`
+# file_list=`ls orig | sed "s/ /\\\\ /g"`
+file_list=`ls orig | sed "s/ /_/g"`
 for fb in $file_list
 do
     fs=`echo $fb | sed "s/_/ /g"`
     echo "Processing $fs"
     python3.4 $valvcvt_path/xlsxtrim.py "orig/$fs" "trimmed/$fs"
 done
-
-ls trimmed > files_trimmed.txt

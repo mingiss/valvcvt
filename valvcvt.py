@@ -20,6 +20,12 @@ import codecs
 
 from xlstree import xlstree
 
+# ----------------------------------
+class valvtree(xlstree):
+    '''xlsx.xml tools localized to valvcvt'''
+
+
+# ----------------------------------
 def main():
     # ----------------------------------
     if (len(sys.argv) < 3):
@@ -29,7 +35,7 @@ def main():
     in_fname = sys.argv[1]
     out_fname = sys.argv[2]
 
-    tree = xlstree()
+    tree = valvtree()
 
     if (not tree.load(in_fname)):
         print("Error: " + tree.last_error)
