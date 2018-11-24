@@ -18,11 +18,37 @@ __status__ = "Prototype"
 import sys
 import codecs
 
+try:
+    from lxml import etree
+except ImportError:
+    print ('no lxml')
+    import xml.etree.ElementTree as etree
+
 from xlstree import xlstree
+from xlstree import ns_xsl
+from xlstree import ns_pref
 
 # ----------------------------------
 class valvtree(xlstree):
     '''xlsx.xml tools localized to valvcvt'''
+
+    def del_heads(self):
+        for tab in self.dom.xpath('//xmlns:Table', namespaces = ns_xsl):
+            prev_spanned = False
+            for row in tab.xpath('xmlns:Row', namespaces = ns_xsl):
+                row_spanned = False
+                for cell in row.xpath('xmlns:Cell', namespaces = ns_xsl):
+                    try:
+                        span = int(cell.get(ns_pref + 'MergeAcross'))
+                        if (span > 1):
+                            row_spanned = True
+                    except:
+                        pass
+                if (prev_spanned and (not row_spanned)):
+                    # previous row had spanned cells -- this row is a heading -- deleting
+                    print('Removed heading: ' + ''.join(row.xpath('.//text()')))
+                    row.getparent().remove(row)
+                prev_spanned = row_spanned
 
 
 # ----------------------------------
@@ -43,6 +69,7 @@ def main():
 
     # ----------------------------------
     tree.trim()
+    tree.del_heads()
 
     # ----------------------------------
     if (not tree.write(out_fname)):
