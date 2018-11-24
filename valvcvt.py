@@ -33,6 +33,7 @@ class valvtree(xlstree):
     '''xlsx.xml tools localized to valvcvt'''
 
     def del_heads(self):
+        '''removes heading rows after the last spanned heading'''
         for tab in self.dom.xpath('//xmlns:Table', namespaces = ns_xsl):
             prev_spanned = False
             for row in tab.xpath('xmlns:Row', namespaces = ns_xsl):
@@ -49,6 +50,36 @@ class valvtree(xlstree):
                     print('Removed heading: ' + ''.join(row.xpath('.//text()')))
                     row.getparent().remove(row)
                 prev_spanned = row_spanned
+
+    def spread_heads(self):
+        '''spreads second level headings to first column of each section row'''
+        for tab in self.dom.xpath('//xmlns:Table', namespaces = ns_xsl):
+            heading = ''
+            for row in tab.xpath('xmlns:Row', namespaces = ns_xsl):
+                second_spanned = False
+                cells = row.xpath('xmlns:Cell', namespaces = ns_xsl)
+                if (len(cells) > 1):
+                    cell = cells[1]
+                    try:
+                        span = int(cell.get(ns_pref + 'MergeAcross'))
+                        if (span > 1):
+                            cell_text = ''.join(cell.xpath('.//text()'))
+                            if (cell_text != 'UNC'):
+                                heading = ''.join(cell.xpath('.//text()'))
+                            else:
+                                print('Removed heading: ' + cell_text)
+                            second_spanned = True
+                    except:
+                        pass
+                if (second_spanned):
+                    row.getparent().remove(row)
+                else:
+                    new_cell = etree.Element(ns_pref + 'Cell')
+                    cell_data = etree.Element(ns_pref + 'Data')
+                    cell_data.set(ns_pref + 'Type', 'String')
+                    cell_data.text = heading
+                    new_cell.append(cell_data)
+                    row.insert(0, new_cell)
 
 
 # ----------------------------------
@@ -70,6 +101,8 @@ def main():
     # ----------------------------------
     tree.trim()
     tree.del_heads()
+    tree.spread_heads()
+    tree.spread_heads() # first level heads at the moment are shifted to the right as if being second level
 
     # ----------------------------------
     if (not tree.write(out_fname)):
