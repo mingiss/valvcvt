@@ -116,6 +116,17 @@ class valvtree(xlstree):
                     new_cell.append(cell_data)
                     row.insert(0, new_cell)
 
+    def spread_fname(self):
+        '''spreads file name to first column of each row in the sheet'''
+        for tab in self.dom.xpath('//xmlns:Table', namespaces = ns_xsl):
+            for row in tab.xpath('xmlns:Row', namespaces = ns_xsl):
+                new_cell = etree.Element(ns_pref + 'Cell')
+                cell_data = etree.Element(ns_pref + 'Data')
+                cell_data.set(ns_pref + 'Type', 'String')
+                cell_data.text = self.fname
+                new_cell.append(cell_data)
+                row.insert(0, new_cell)
+
     def process_valv(self):
         '''all headings processing of one xlsx file'''
         self.trim()
@@ -126,6 +137,7 @@ class valvtree(xlstree):
         self.spread_heads() # spread second level heads to the relevant groups of rows
         self.spread_heads() # first level heads at the moment are shifted to the right as if being second level
         self.spread_sheet_heads()
+        self.spread_fname()
 
         self.concat_sheets()
 
