@@ -47,7 +47,7 @@ class valvtree(xlstree):
                         pass
                 if (prev_spanned and (not row_spanned)):
                     # previous row had spanned cells -- this row is a heading -- deleting
-                    print('Removed heading: ' + ''.join(row.xpath('.//text()')))
+                    print(self.fname + ': Removed heading: ' + ''.join(row.xpath('.//text()')))
                     row.getparent().remove(row)
                 prev_spanned = row_spanned
 
@@ -137,12 +137,12 @@ def main():
         print("Error: Give input and output file names as parameters")
         sys.exit(2)
 
-    in_flist = sys.argv[1]
+    in_flist_fname = sys.argv[1]
     out_fname = sys.argv[2]
 
     try:
-        with open(in_flist) as flist:
-            in_files = flist.read().splitlines()
+        with open(in_flist_fname) as flist:
+            in_fnames = flist.read().splitlines()
     except OSError as err:
         self.last_error = 'Unable to open file %s (%s)' % (in_flist, err)
         sys.exit(1)
@@ -150,15 +150,24 @@ def main():
     # ----------------------------------
     tree = valvtree()
 
-    if (not tree.load(in_files[0])):
+    if (not tree.load(in_fnames[0])):
         print("Error: " + tree.last_error)
         sys.exit(1)
 
     tree.process_valv()
 
-    del in_files[0]
+    del in_fnames[0]
+    for in_fname in in_fnames:
+        if (in_fname != 'orig/README.txt'):
+            add_tree = valvtree()
 
+            if (not add_tree.load(in_fname)):
+                print("Error: " + add_tree.last_error)
+                sys.exit(1)
 
+            add_tree.process_valv()
+
+            tree.append_xlsx(add_tree)
 
     # ----------------------------------
     if (not tree.write(out_fname)):

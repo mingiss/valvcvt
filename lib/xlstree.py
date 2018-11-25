@@ -29,6 +29,7 @@ class xlstree:
 
     def __init__(self):
         self.last_error = ''
+        self.fname = ''
 
         # objectify.deannotate(new_dom, cleanup_namespaces = True)
 
@@ -36,17 +37,19 @@ class xlstree:
     def load(self, in_fname):
         '''loads self.dom from xml file, returns True in case of success'''
 
+        self.fname = in_fname
+
         try:
             with open(in_fname, 'rb') as in_file:
                 in_data = in_file.read()
         except OSError as err:
-            self.last_error = 'Unable to open file %s (%s)' % (in_fname, err)
+            self.last_error = 'Unable to open file "%s" (%s)' % (self.fname, err)
             return(False)
 
         try:
             self.dom = etree.fromstring(in_data)
         except Exception as err:
-            self.last_error = 'Bad input file format (%s)" % err'
+            self.last_error = 'Bad input file "%s" format (%s)' % (self.fname, err)
             return(False)
 
         return(True)
@@ -75,7 +78,11 @@ class xlstree:
 
     def append_xlsx(self, add_tree):
         '''appends another xlstre object data to self.dom'''
-        pass
+        tables = self.dom.xpath('//xmlns:Table', namespaces = ns_xsl)
+        table = tables[0]
+        for tab in add_tree.dom.xpath('//xmlns:Table', namespaces = ns_xsl):
+            for row in tab.xpath('xmlns:Row', namespaces = ns_xsl):
+                table.append(row)
 
 
     def trim(self):
