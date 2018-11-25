@@ -6,7 +6,8 @@ TODO list
 
 1. > done: Move file import, export and deletion of emty cells from `valvcvt.py` to methods of `xlstree`.
 
-1. Make `xlsx2htm` &ndash; converter from `xlsx.xml` to `html`.
+1.  * Make `xlsx2htm` &ndash; converter from `xlsx.xml` to `html`.
+    * Make `xlstree.export_html()`
 
 1.  * > done: Fork empty cells deletion to separate tool `xslxtrim`.
     * > done: Move test script `valvcvt.sh` contents to `test_xslxtrim.sh` as well.
@@ -18,3 +19,10 @@ TODO list
 1. Move top level `.py` files to the subfolder `src`, folder `lib` &ndash; to `src/lib`
 
 1. Rename `xlstree.write()` to ``xlstree.save()`.
+
+1.  * Make `xlstree.export_csv()`
+    * Implement it into `valvcvt.py`.
+
+1. README.md
+
+1. pydoc
