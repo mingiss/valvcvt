@@ -103,3 +103,14 @@ class xlstree:
         for sty in self.dom.xpath('//xmlns:Style', namespaces = ns_xsl):
             if (sty.get(ns_pref + 'ID') not in used_styles.keys()):
                 sty.getparent().remove(sty)
+
+    def concat_sheets(self):
+        '''appends all sheets starting from 2-nd to the end of the 1-st, removes appended sheets'''
+
+        tables = self.dom.xpath('//xmlns:Table', namespaces = ns_xsl)
+        main = tables[0]
+        del tables[0]
+        for table in tables:
+            for row in table.xpath('xmlns:Row', namespaces = ns_xsl):
+                main.append(row)
+            table.getparent().remove(table)

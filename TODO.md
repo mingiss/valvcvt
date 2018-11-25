@@ -12,3 +12,5 @@ TODO list
     * > done: Move test script `valvcvt.sh` contents to `test_xslxtrim.sh` as well.
     * > done: Delete destination files at very begin of the test.
     * > done: Rename test script `valvcvt.sh` to `test_valvcvt.sh`.
+
+1. `xlstree.concat_sheets()` doesn't delete appended sheets

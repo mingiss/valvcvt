@@ -122,11 +122,14 @@ def main():
 
     # ----------------------------------
     tree.trim()
+
     # tree.insert_heads() # for tables with second level headings solely
     # tree.insert_heads() # for tables without headings
     tree.del_hats()
     tree.spread_heads()
     tree.spread_heads() # first level heads at the moment are shifted to the right as if being second level
+
+    tree.concat_sheets()
 
     # ----------------------------------
     if (not tree.write(out_fname)):
