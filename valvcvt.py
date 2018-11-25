@@ -103,6 +103,18 @@ class valvtree(xlstree):
                     new_cell.append(cell_data)
                     row.insert(0, new_cell)
 
+    def spread_sheet_heads(self):
+        '''spreads sheet headings to first column of each row in the sheet'''
+        for ws in self.dom.xpath('//xmlns:Worksheet', namespaces = ns_xsl):
+            heading = ws.get(ns_pref + 'Name')
+            for tab in ws.xpath('xmlns:Table', namespaces = ns_xsl):
+                for row in tab.xpath('xmlns:Row', namespaces = ns_xsl):
+                    new_cell = etree.Element(ns_pref + 'Cell')
+                    cell_data = etree.Element(ns_pref + 'Data')
+                    cell_data.set(ns_pref + 'Type', 'String')
+                    cell_data.text = heading
+                    new_cell.append(cell_data)
+                    row.insert(0, new_cell)
 
 # ----------------------------------
 def main():
@@ -126,8 +138,9 @@ def main():
     # tree.insert_heads() # for tables with second level headings solely
     # tree.insert_heads() # for tables without headings
     tree.del_hats()
-    tree.spread_heads()
+    tree.spread_heads() # spread second level heads to the relevant groups of rows
     tree.spread_heads() # first level heads at the moment are shifted to the right as if being second level
+    tree.spread_sheet_heads()
 
     tree.concat_sheets()
 

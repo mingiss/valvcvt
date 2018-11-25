@@ -14,3 +14,5 @@ TODO list
     * > done: Rename test script `valvcvt.sh` to `test_valvcvt.sh`.
 
 1. `xlstree.concat_sheets()` doesn't delete appended sheets
+
+1. Move top level `.py` files to the subfolder `src`, folder `lib` &ndash; to `src/lib`
