@@ -73,6 +73,11 @@ class xlstree:
         return(True)
 
 
+    def append_xlsx(self, add_tree):
+        '''appends another xlstre object data to self.dom'''
+        pass
+
+
     def trim(self):
         '''delete empty cells of self.dom'''
 

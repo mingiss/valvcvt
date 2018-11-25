@@ -116,33 +116,49 @@ class valvtree(xlstree):
                     new_cell.append(cell_data)
                     row.insert(0, new_cell)
 
+    def process_valv(self):
+        '''all headings processing of one xlsx file'''
+        self.trim()
+
+        # self.insert_heads() # for tables with second level headings solely
+        # self.insert_heads() # for tables without headings
+        self.del_hats()
+        self.spread_heads() # spread second level heads to the relevant groups of rows
+        self.spread_heads() # first level heads at the moment are shifted to the right as if being second level
+        self.spread_sheet_heads()
+
+        self.concat_sheets()
+
+
 # ----------------------------------
 def main():
-    # ----------------------------------
+
     if (len(sys.argv) < 3):
         print("Error: Give input and output file names as parameters")
         sys.exit(2)
 
-    in_fname = sys.argv[1]
+    in_flist = sys.argv[1]
     out_fname = sys.argv[2]
 
-    tree = valvtree()
-
-    if (not tree.load(in_fname)):
-        print("Error: " + tree.last_error)
+    try:
+        with open(in_flist) as flist:
+            in_files = flist.read().splitlines()
+    except OSError as err:
+        self.last_error = 'Unable to open file %s (%s)' % (in_flist, err)
         sys.exit(1)
 
     # ----------------------------------
-    tree.trim()
+    tree = valvtree()
 
-    # tree.insert_heads() # for tables with second level headings solely
-    # tree.insert_heads() # for tables without headings
-    tree.del_hats()
-    tree.spread_heads() # spread second level heads to the relevant groups of rows
-    tree.spread_heads() # first level heads at the moment are shifted to the right as if being second level
-    tree.spread_sheet_heads()
+    if (not tree.load(in_files[0])):
+        print("Error: " + tree.last_error)
+        sys.exit(1)
 
-    tree.concat_sheets()
+    tree.process_valv()
+
+    del in_files[0]
+
+
 
     # ----------------------------------
     if (not tree.write(out_fname)):

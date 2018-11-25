@@ -14,3 +14,4 @@ orig/3-2-way selector ball valves with threaded connections - SAE connections.xl
 orig/3-way and 4-way ball valves with threaded connections.xlsx.xml
 orig/Ball valves for manifold mounting.xlsx.xml
 orig/Cartridge ball valves.xlsx.xml
+orig/README.txt
