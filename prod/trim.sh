@@ -35,5 +35,5 @@ for fb in $file_list
 do
     fs=`echo $fb | sed "s/_/ /g"`
     echo "Processing $fs"
-    python3.4 $valvcvt_path/xlsxtrim.py "orig/$fs" "trimmed/$fs"
+    python3 $valvcvt_path/xlsxtrim.py "orig/$fs" "trimmed/$fs"
 done
