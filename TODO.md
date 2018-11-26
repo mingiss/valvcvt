@@ -7,7 +7,8 @@ TODO list
 1. > done: Move file import, export and deletion of emty cells from `valvcvt.py` to methods of `xlstree`.
 
 1.  * Make `xlsx2htm` &ndash; converter from `xlsx.xml` to `html`.
-    * Make `xlstree.export_html()`
+    * Make `xlstree.export_html()`.
+    (Not relevant to `valvcvt`.)
 
 1.  * > done: Fork empty cells deletion to separate tool `xslxtrim`.
     * > done: Move test script `valvcvt.sh` contents to `test_xslxtrim.sh` as well.
@@ -21,8 +22,28 @@ TODO list
 1. Rename `xlstree.write()` to ``xlstree.save()`.
 
 1.  * Make `xlstree.export_csv()`
-    * Implement it into `valvcvt.py`.
+    * Implement it into `valvcvt.py` &ndash; add third parameter &ndash; output format &ndash; `csv` or `xlsx`.
 
 1. README.md
 
 1. pydoc
+
+1. Make tests for
+    * `xlstree.append_xlsx_sheet()`
+    * `xlstree.append_xlsx()`
+    * forthcomming `xlstree.export_csv()`
+    * rename output of `test_xlstrim.sh`
+    * adapt `test_valvcvt.sh` &ndash; redirect to different output
+
+1. Extend `xlstree.append_xlsx()` to concatenate all worksheets of the files.
+At the moment only the very first worksheet tables are concatenated.
+(Not relevant to the `valvcvt` project, but anyway.)
+
+1. Extend both
+    * `xlstree.append_xlsx()` and
+    * `xlstree.append_xlsx_sheet()` to move cells together with their styles.
+    * Investigate numbering order of the styles.
+
+1. Check correspondence between <Worksheet> and <Table> tags.
+
+1. Compare `xlsx` and `xslx.xml` formats.
