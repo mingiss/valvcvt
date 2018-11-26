@@ -15,9 +15,9 @@ TODO list
     * > done: Delete destination files at very begin of the test.
     * > done: Rename test script `valvcvt.sh` to `test_valvcvt.sh`.
 
-1. `xlstree.concat_sheets()` doesn't delete appended sheets
+1. > done: `xlstree.append_xlsx_sheet()` doesn't delete appended sheets
 
-1. Move top level `.py` files to the subfolder `src`, folder `lib` &ndash; to `src/lib`
+1. > done: Move top level `.py` files to the subfolder `src`, folder `lib` &ndash; to `src/lib`
 
 1. Rename `xlstree.write()` to ``xlstree.save()`.
 
@@ -44,7 +44,7 @@ At the moment only the very first worksheet tables are concatenated.
     * `xlstree.append_xlsx_sheet()` to move cells together with their styles.
     * Investigate numbering order of the styles.
 
-1. Check correspondence between <Worksheet> and <Table> tags.
+1. Check correspondence between `<Worksheet>` and `<Table>` tags.
 
 1. Compare `xlsx` and `xslx.xml` formats.
 
