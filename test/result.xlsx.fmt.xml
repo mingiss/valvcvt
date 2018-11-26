@@ -1899,10 +1899,4 @@
     </Table>
     <x:WorksheetOptions/>
   </ss:Worksheet>
-  <ss:Worksheet ss:Name="KHZ-SAE Stainless Steel">
-    <x:WorksheetOptions/>
-  </ss:Worksheet>
-  <ss:Worksheet ss:Name="KH-SAE Steel">
-    <x:WorksheetOptions/>
-  </ss:Worksheet>
 </Workbook>
