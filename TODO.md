@@ -28,12 +28,12 @@ TODO list
 
 1. pydoc
 
-1. Make tests for
+1. Make tests for:
     * `xlstree.append_xlsx_sheet()`
     * `xlstree.append_xlsx()`
     * forthcomming `xlstree.export_csv()`
     * rename output of `test_xlstrim.sh`
-    * adapt `test_valvcvt.sh` &ndash; redirect to different output
+    * > done: adapt `test_valvcvt.sh` &ndash; redirect to different output
 
 1. Extend `xlstree.append_xlsx()` to concatenate all worksheets of the files.
 At the moment only the very first worksheet tables are concatenated.
