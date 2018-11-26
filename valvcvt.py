@@ -139,7 +139,7 @@ class valvtree(xlstree):
         self.spread_sheet_heads()
         self.spread_fname()
 
-        self.concat_sheets()
+        self.append_xlsx_sheet()
 
 
 # ----------------------------------

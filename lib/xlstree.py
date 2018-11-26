@@ -76,15 +76,6 @@ class xlstree:
         return(True)
 
 
-    def append_xlsx(self, add_tree):
-        '''appends another xlstre object data to self.dom'''
-        tables = self.dom.xpath('//xmlns:Table', namespaces = ns_xsl)
-        table = tables[0]
-        for tab in add_tree.dom.xpath('//xmlns:Table', namespaces = ns_xsl):
-            for row in tab.xpath('xmlns:Row', namespaces = ns_xsl):
-                table.append(row)
-
-
     def trim(self):
         '''delete empty cells of self.dom'''
 
@@ -116,13 +107,40 @@ class xlstree:
             if (sty.get(ns_pref + 'ID') not in used_styles.keys()):
                 sty.getparent().remove(sty)
 
-    def concat_sheets(self):
-        '''appends all sheets starting from 2-nd to the end of the 1-st, removes appended sheets'''
+
+    def del_empty_tables_sheets(self):
+
+        for tab in self.dom.xpath('//xmlns:Table', namespaces = ns_xsl):
+            if not (tab.tail or tab.text or tab.xpath('xmlns:Row', namespaces = ns_xsl)):
+                tab.getparent().remove(tab)
+
+        for sheet in self.dom.xpath('//xmlns:Worksheet', namespaces = ns_xsl):
+            if not (sheet.tail or sheet.text or sheet.xpath('xmlns:Table', namespaces = ns_xsl)):
+                sheet.getparent().remove(sheet)
+
+
+    def append_xlsx_sheet(self):
+        """ Add worksheets together"""
 
         tables = self.dom.xpath('//xmlns:Table', namespaces = ns_xsl)
         main = tables[0]
         del tables[0]
-        for table in tables:
-            for row in table.xpath('xmlns:Row', namespaces = ns_xsl):
+
+        for tbl in tables:
+             for row in tbl.xpath('xmlns:Row', namespaces = ns_xsl):
                 main.append(row)
-            table.getparent().remove(table)
+
+        self.del_empty_tables_sheets()
+
+
+    def append_xlsx(self, add_tree):
+        """Add tables from seperate files together"""
+
+        tables = self.dom.xpath('//xmlns:Table', namespaces = ns_xsl)
+        main = tables[0]
+
+        add_tree_tables = add_tree.dom.xpath('//xmlns:Table', namespaces = ns_xsl)
+        table = add_tree_tables[0]
+
+        for row in table.xpath('xmlns:Row', namespaces = ns_xsl):
+            main.append(row)
