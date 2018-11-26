@@ -1,4 +1,4 @@
-set valvcvt_path=..
+set valvcvt_path=..\src
 set PYTHONPATH=%valvcvt_path%\lib:%PYTHONPATH%
 
 set all_makefile=F:\kp\src\vtex\xml\tex4ht\tools\all_makefile\src_kp\all_makefile

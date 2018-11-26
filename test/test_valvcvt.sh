@@ -1,6 +1,6 @@
 #! /bin/bash
 
-valvcvt_path=..
+valvcvt_path=../src
 export PYTHONPATH=$valvcvt_path/lib:$PYTHONPATH
 
 # head -c 1000 "2-way ball valves flangeable with SAE connections.xlsx.xml" > zzz.txt
