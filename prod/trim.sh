@@ -22,7 +22,7 @@
 # mv "Cartridge ball valves.xlsx.xml"                                                          Cartridge_ball_valves.xlsx.xml
 # cd ..
 
-valvcvt_path=..
+valvcvt_path=../src
 export PYTHONPATH=$valvcvt_path/lib:$PYTHONPATH
 
 mkdir trimmed

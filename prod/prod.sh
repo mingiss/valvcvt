@@ -6,7 +6,7 @@
 ls orig | sed "s/^/orig\//g" > files_orig.txt
 ls trimmed | sed "s/^/trimmed\//g" > files_trimmed.txt
 
-valvcvt_path=..
+valvcvt_path=../src
 export PYTHONPATH=$valvcvt_path/lib:$PYTHONPATH
 
 python3 $valvcvt_path/valvcvt.py files_orig.txt result.xlsx.xml
