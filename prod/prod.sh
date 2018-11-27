@@ -9,5 +9,7 @@ ls trimmed | sed "s/^/trimmed\//g" > files_trimmed.txt
 valvcvt_path=../src
 export PYTHONPATH=$valvcvt_path/lib:$PYTHONPATH
 
-python3 $valvcvt_path/valvcvt.py files_orig.txt result.xlsx.xml
+python3 $valvcvt_path/valvcvt.py files_orig.txt result.xlsx.xml xml
 # python3 $valvcvt_path/valvcvt.py "orig/2-way ball valves flangeable with SAE connections.xlsx.xml" result.xlsx.xml
+
+python3 $valvcvt_path/valvcvt.py files_orig.txt result.csv

@@ -13,5 +13,7 @@ export PYTHONPATH=$valvcvt_path/lib:$PYTHONPATH
 # xmllint --format cartridge.orig.xml > cartridge.orig.fmt.xml
 
 # python3 /home/mingis/F/kp/src/xml/valvcvt/src/valvcvt/valvcvt.py files_orig.txt result.xlsx.xml
-python3 $valvcvt_path/valvcvt.py files_orig.txt result.xlsx.xml
+python3 $valvcvt_path/valvcvt.py files_orig.txt result.xlsx.xml xml
 xmllint --format result.xlsx.xml > result.xlsx.fmt.xml
+
+python3 $valvcvt_path/valvcvt.py files_orig.txt result.csv

@@ -4,10 +4,14 @@
 """
 valvcvt.py
 
-Strip empty cells out of OpenOffice Calc exported xml file.
+Concatenates tables of multiple `Microsoft Excel 2003 XML` files in particular valve classificator format
+Spreads minor and major headings, sheet and file names to the start of the exported rows.
 
 Using:
-    python valvcvt.py input.xml output.xml
+    python valvcvt.py input.xml output.xml csv
+
+Third optional parameter -- output format
+At the moment could be `csv` (default) or `xml` (the latter for files in `Microsoft Excel 2003 XML` format)
 """
 
 __author__ = "Mindaugas Piešina"
@@ -25,22 +29,26 @@ except ImportError:
     import xml.etree.ElementTree as etree
 
 from xlstree import xlstree
-from xlstree import ns_xsl
-from xlstree import ns_pref
 
 # ----------------------------------
 class valvtree(xlstree):
     '''xlsx.xml tools localized to valvcvt'''
 
+    out_fmt_selector = \
+    { \
+        'csv': (lambda self, out_fname, delim: xlstree.export_csv(self, out_fname, delim)), \
+        'xml': (lambda self, out_fname, delim: xlstree.write(self, out_fname)) \
+    }
+
     def del_hats(self):
         '''removes heading rows after the last spanned heading'''
-        for tab in self.dom.xpath('//xmlns:Table', namespaces = ns_xsl):
+        for tab in self.dom.xpath('//xmlns:Table', namespaces = xlstree.ns_xsl):
             prev_spanned = False
-            for row in tab.xpath('xmlns:Row', namespaces = ns_xsl):
+            for row in tab.xpath('xmlns:Row', namespaces = xlstree.ns_xsl):
                 row_spanned = False
-                for cell in row.xpath('xmlns:Cell', namespaces = ns_xsl):
+                for cell in row.xpath('xmlns:Cell', namespaces = xlstree.ns_xsl):
                     try:
-                        span = int(cell.get(ns_pref + 'MergeAcross'))
+                        span = int(cell.get(xlstree.ns_pref + 'MergeAcross'))
                         if (span > 1):
                             row_spanned = True
                     except:
@@ -53,14 +61,14 @@ class valvtree(xlstree):
 
     def insert_heads(self):
         '''inserts first level heads, if absent'''
-        for tab in self.dom.xpath('//xmlns:Table', namespaces = ns_xsl):
+        for tab in self.dom.xpath('//xmlns:Table', namespaces = xlstree.ns_xsl):
             second_spanned = False
-            for row in tab.xpath('xmlns:Row', namespaces = ns_xsl):
-                cells = row.xpath('xmlns:Cell', namespaces = ns_xsl)
+            for row in tab.xpath('xmlns:Row', namespaces = xlstree.ns_xsl):
+                cells = row.xpath('xmlns:Cell', namespaces = xlstree.ns_xsl)
                 if (len(cells) > 1):
                     cell = cells[1]
                     try:
-                        span = int(cell.get(ns_pref + 'MergeAcross'))
+                        span = int(cell.get(xlstree.ns_pref + 'MergeAcross'))
                         if (span > 1):
                             second_spanned = True
                             break
@@ -71,22 +79,22 @@ class valvtree(xlstree):
                 # for instance, in file 2-way ball valves flangeable with SAE connections.xlsx.xml (sheet KH-SAE Steel)
                 # file Cartridge ball valves.xlsx.xml has no headings at all (the method should be applyed twice)
                 # just moving the table to right by one cell
-                for row in tab.xpath('xmlns:Row', namespaces = ns_xsl):
-                    new_cell = etree.Element(ns_pref + 'Cell')
+                for row in tab.xpath('xmlns:Row', namespaces = xlstree.ns_xsl):
+                    new_cell = etree.Element(xlstree.ns_pref + 'Cell')
                     row.insert(0, new_cell)
 
 
     def spread_heads(self):
         '''spreads second level headings to first column of each section row'''
-        for tab in self.dom.xpath('//xmlns:Table', namespaces = ns_xsl):
+        for tab in self.dom.xpath('//xmlns:Table', namespaces = xlstree.ns_xsl):
             heading = ''
-            for row in tab.xpath('xmlns:Row', namespaces = ns_xsl):
+            for row in tab.xpath('xmlns:Row', namespaces = xlstree.ns_xsl):
                 second_spanned = False
-                cells = row.xpath('xmlns:Cell', namespaces = ns_xsl)
+                cells = row.xpath('xmlns:Cell', namespaces = xlstree.ns_xsl)
                 if (len(cells) > 1):
                     cell = cells[1]
                     try:
-                        span = int(cell.get(ns_pref + 'MergeAcross'))
+                        span = int(cell.get(xlstree.ns_pref + 'MergeAcross'))
                         if (span > 1):
                             cell_text = ''.join(cell.xpath('.//text()'))
                             heading = ''.join(cell.xpath('.//text()'))
@@ -96,33 +104,33 @@ class valvtree(xlstree):
                 if (second_spanned):
                     row.getparent().remove(row)
                 else:
-                    new_cell = etree.Element(ns_pref + 'Cell')
-                    cell_data = etree.Element(ns_pref + 'Data')
-                    cell_data.set(ns_pref + 'Type', 'String')
+                    new_cell = etree.Element(xlstree.ns_pref + 'Cell')
+                    cell_data = etree.Element(xlstree.ns_pref + 'Data')
+                    cell_data.set(xlstree.ns_pref + 'Type', 'String')
                     cell_data.text = heading
                     new_cell.append(cell_data)
                     row.insert(0, new_cell)
 
     def spread_sheet_heads(self):
         '''spreads sheet headings to first column of each row in the sheet'''
-        for ws in self.dom.xpath('//xmlns:Worksheet', namespaces = ns_xsl):
-            heading = ws.get(ns_pref + 'Name')
-            for tab in ws.xpath('xmlns:Table', namespaces = ns_xsl):
-                for row in tab.xpath('xmlns:Row', namespaces = ns_xsl):
-                    new_cell = etree.Element(ns_pref + 'Cell')
-                    cell_data = etree.Element(ns_pref + 'Data')
-                    cell_data.set(ns_pref + 'Type', 'String')
+        for ws in self.dom.xpath('//xmlns:Worksheet', namespaces = xlstree.ns_xsl):
+            heading = ws.get(xlstree.ns_pref + 'Name')
+            for tab in ws.xpath('xmlns:Table', namespaces = xlstree.ns_xsl):
+                for row in tab.xpath('xmlns:Row', namespaces = xlstree.ns_xsl):
+                    new_cell = etree.Element(xlstree.ns_pref + 'Cell')
+                    cell_data = etree.Element(xlstree.ns_pref + 'Data')
+                    cell_data.set(xlstree.ns_pref + 'Type', 'String')
                     cell_data.text = heading
                     new_cell.append(cell_data)
                     row.insert(0, new_cell)
 
     def spread_fname(self):
         '''spreads file name to first column of each row in the sheet'''
-        for tab in self.dom.xpath('//xmlns:Table', namespaces = ns_xsl):
-            for row in tab.xpath('xmlns:Row', namespaces = ns_xsl):
-                new_cell = etree.Element(ns_pref + 'Cell')
-                cell_data = etree.Element(ns_pref + 'Data')
-                cell_data.set(ns_pref + 'Type', 'String')
+        for tab in self.dom.xpath('//xmlns:Table', namespaces = xlstree.ns_xsl):
+            for row in tab.xpath('xmlns:Row', namespaces = xlstree.ns_xsl):
+                new_cell = etree.Element(xlstree.ns_pref + 'Cell')
+                cell_data = etree.Element(xlstree.ns_pref + 'Data')
+                cell_data.set(xlstree.ns_pref + 'Type', 'String')
                 cell_data.text = self.fname
                 new_cell.append(cell_data)
                 row.insert(0, new_cell)
@@ -146,11 +154,17 @@ class valvtree(xlstree):
 def main():
 
     if (len(sys.argv) < 3):
-        print("Error: Give input and output file names as parameters")
+        print('Error: Give input and output file names as parameters')
         sys.exit(2)
 
     in_flist_fname = sys.argv[1]
     out_fname = sys.argv[2]
+    out_fmt = 'csv'
+    if (len(sys.argv) > 3):
+        out_fmt = sys.argv[3]
+        if (not out_fmt in valvtree.out_fmt_selector.keys()):
+            print('Error: Unknown output file format: ' + out_fmt)
+            sys.exit(2)
 
     try:
         with open(in_flist_fname) as flist:
@@ -182,7 +196,7 @@ def main():
             tree.append_xlsx(add_tree)
 
     # ----------------------------------
-    if (not tree.write(out_fname)):
+    if (not valvtree.out_fmt_selector[out_fmt](tree, out_fname, ',')):
         print("Error: " + tree.last_error)
         sys.exit(1)
 

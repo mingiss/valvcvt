@@ -46,6 +46,8 @@ At the moment only the very first worksheet tables are concatenated.
 
 1. Check correspondence between `<Worksheet>` and `<Table>` tags.
 
-1. Compare `xlsx` and `xslx.xml` formats.
+1. > done: this is the `Microsoft Excel 2003 XML` format: Compare `xlsx` and `xslx.xml` formats.
 
 1. Fix `prod/trim.sh` to skip `README.txt`.
+
+1. Clone `lib` from `kppylib`.
