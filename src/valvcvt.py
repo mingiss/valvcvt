@@ -40,6 +40,8 @@ class valvtree(xlstree):
         'xml': (lambda self, out_fname, delim: xlstree.write(self, out_fname)) \
     }
 
+    materials = ['Stainless Steel', 'Steel', 'Brass']
+
     def del_hats(self):
         '''removes heading rows after the last spanned heading'''
         for tab in self.dom.xpath('//xmlns:Table', namespaces = xlstree.ns_xsl):
@@ -112,9 +114,17 @@ class valvtree(xlstree):
                     row.insert(0, new_cell)
 
     def spread_sheet_heads(self):
-        '''spreads sheet headings to first column of each row in the sheet'''
+        '''
+        spreads sheet headings to first column of each row in the sheet and
+        material name parsed out of them into the second
+        '''
         for ws in self.dom.xpath('//xmlns:Worksheet', namespaces = xlstree.ns_xsl):
             heading = ws.get(xlstree.ns_pref + 'Name')
+            material = ''
+            for mat in valvtree.materials:
+                if (mat in heading):
+                    material = mat
+                    break
             for tab in ws.xpath('xmlns:Table', namespaces = xlstree.ns_xsl):
                 for row in tab.xpath('xmlns:Row', namespaces = xlstree.ns_xsl):
                     new_cell = etree.Element(xlstree.ns_pref + 'Cell')
@@ -123,6 +133,12 @@ class valvtree(xlstree):
                     cell_data.text = heading
                     new_cell.append(cell_data)
                     row.insert(0, new_cell)
+                    new_cell = etree.Element(xlstree.ns_pref + 'Cell')
+                    cell_data = etree.Element(xlstree.ns_pref + 'Data')
+                    cell_data.set(xlstree.ns_pref + 'Type', 'String')
+                    cell_data.text = material
+                    new_cell.append(cell_data)
+                    row.insert(1, new_cell)
 
     def spread_fname(self):
         '''spreads file name to first column of each row in the sheet'''
