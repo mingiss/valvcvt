@@ -47,6 +47,16 @@ class ValvRecTree(XlsTree):
         out_data = []   # array of output rows -- arrays of string cells
 
 
+    def calc_max_row_len(self):
+        # calculate max row length
+        max_row_len = 0
+        for row_data in self.in_data:
+            row_len = len(row_data)
+            if (row_len > max_row_len):
+                max_row_len = row_len
+        return max_row_len
+
+
     def scan_in_data(self, table):
         '''scanning input data from table node to self.in_data'''
 
@@ -85,39 +95,27 @@ class ValvRecTree(XlsTree):
             if (not inserted):
                 break
 
-        # insert colspans
-        while (True):
-            inserted = False
-
-            # calculate max row length
-            max_row_len = 0
-            for row_data in self.in_data:
-                row_len = len(row_data)
-                if (row_len > max_row_len):
-                    max_row_len = row_len
-
-            for col_ix in range(0, max_row_len):
-                for row_ix in range(0, len(self.in_data)):
-                    if (len(self.in_data[row_ix]) > col_ix):
-                        cell_data = self.in_data[row_ix][col_ix]
-                        if (cell_data.rowspan > 0):
-                            new_cell = InCellValue()
-                            src_row_ix = row_ix - 1
-                            if ((src_row_ix >= 0) and (len(self.in_data[src_row_ix]) > col_ix)):
-                                new_cell = copy.copy(self.in_data[src_row_ix][col_ix])
-                            new_cell.colspan = 0
-                            for ii in range(0, cell_data.rowspan):
-                                new_row_ix = row_ix + ii + 1
-                                if (len(self.in_data) > new_row_ix):
-                                    # TODO: append empty cells in case, if len(self.in_data[new_row_ix]) < col_ix
-                                    self.in_data[new_row_ix].insert(col_ix, copy.copy(new_cell))
-                            self.in_data[row_ix][col_ix] = copy.copy(new_cell)
-                            inserted = True
-                            break
-                if (inserted):
-                    break
-            if (not inserted):
-                break
+        # spread headings through rowspans
+        max_row_len = self.calc_max_row_len()
+        col_ix = 0
+        while (col_ix < max_row_len):
+            for row_ix in range(0, len(self.in_data)):
+                if (len(self.in_data[row_ix]) > col_ix):
+                    cell_data = self.in_data[row_ix][col_ix]
+                    if (cell_data.rowspan > 0):
+                        new_cell = InCellValue()
+                        src_row_ix = row_ix - 1
+                        if ((src_row_ix >= 0) and (len(self.in_data[src_row_ix]) > col_ix)):
+                            new_cell = copy.copy(self.in_data[src_row_ix][col_ix])
+                        new_cell.colspan = 0
+                        for ii in range(0, cell_data.rowspan):
+                            new_row_ix = row_ix + ii + 1
+                            if (len(self.in_data) > new_row_ix):
+                                # TODO: append empty cells in case, if len(self.in_data[new_row_ix]) < col_ix
+                                self.in_data[new_row_ix].insert(col_ix, copy.copy(new_cell))
+                        self.in_data[row_ix][col_ix] = copy.copy(new_cell)
+                        max_row_len = self.calc_max_row_len()
+            col_ix = col_ix + 1
 
 
         print('----------------------------------')
