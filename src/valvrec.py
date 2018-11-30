@@ -17,6 +17,7 @@ __email__ = "mpiesina@netscape.net"
 __status__ = "Prototype"
 
 import sys
+import copy
 
 try:
     from lxml import etree
@@ -32,8 +33,8 @@ class InCellValue:
     def __init__(self):
         self.value = ''
         self.is_heading = False
-        self.colspan = 1
-        self.rowspan = 1
+        self.colspan = 0
+        self.rowspan = 0
 
 # ----------------------------------
 class ValvRecTree(XlsTree):
@@ -60,7 +61,7 @@ class ValvRecTree(XlsTree):
                 colsp = cell.get(XlsTree.ns_pref + 'MergeAcross')
                 if (colsp):
                     cell_data.colspan = int(colsp)
-                if (cell_data.colspan > 1):
+                if (cell_data.colspan > 0):
                     cell_data.is_heading = True
                 rowsp = cell.get(XlsTree.ns_pref + 'MergeDown')
                 if (rowsp):
@@ -69,19 +70,56 @@ class ValvRecTree(XlsTree):
             self.in_data.append(row_data)
 
         # insert colspans
-        for row_data in self.in_data:
-            for cell_data in row_data:
-                for ii in range(1, cell_data.colspan):
-                    row_data.insert(row_data.index(cell_data) + 1, InCellValue())
-                cell_data.colspan = 1
+        while (True):
+            inserted = False
+            for row_data in self.in_data:
+                for cell_data in row_data:
+                    if (cell_data.colspan > 0):
+                        for ii in range(0, cell_data.colspan):
+                            row_data.insert(row_data.index(cell_data) + 1, InCellValue())
+                        cell_data.colspan = 0
+                        inserted = True
+                        break
+                if (inserted):
+                    break
+            if (not inserted):
+                break
+
+        # insert colspans
+        while (True):
+            inserted = False
+            for row_data in self.in_data:
+                for cell_data in row_data:
+                    if (cell_data.rowspan > 0):
+                        new_cell = InCellValue()
+                        cur_row_ix = self.in_data.index(row_data)
+                        src_row_ix = cur_row_ix - 1
+                        col_ix = row_data.index(cell_data)
+                        if (col_ix > 5):
+                            break
+                        if ((src_row_ix >= 0) and (len(self.in_data[src_row_ix]) > col_ix)):
+                            new_cell = copy.copy(self.in_data[src_row_ix][col_ix])
+                        new_cell.colspan = 0
+                        for ii in range(0, cell_data.rowspan):
+                            row_ix = self.in_data.index(row_data) + ii + 1
+                            if (len(self.in_data) > row_ix):
+                                self.in_data[row_ix].insert(col_ix, copy.copy(new_cell))
+                        self.in_data[cur_row_ix][col_ix] = copy.copy(new_cell)
+                        inserted = True
+                        break
+                if (inserted):
+                    break
+            if (not inserted):
+                break
 
 
         print('----------------------------------')
         for row_data in self.in_data:
             for cell_data in row_data:
-                # print(cell_data.value + ',\t', end = '')
+                print(cell_data.value + ',\t', end = '')
                 # print(str(cell_data.colspan) + ',\t', end = '')
-                print(str(cell_data.rowspan) + ',\t', end = '')
+                # print(str(cell_data.rowspan) + ',\t', end = '')
+                # print(str(cell_data.is_heading) + ',\t', end = '')
             print()
 
 
