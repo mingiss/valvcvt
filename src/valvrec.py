@@ -69,11 +69,11 @@ class ValvRecTree(XlsTree):
             self.in_data.append(row_data)
 
         # insert colspans
-#        for row_data in self.in_data:
-#            for cell_data in row_data:
-#                for ii in range(2, cell_data.colspan):
-#                    row_data.insert(row_data.index(cell_data) + 1, InCellValue())
-#                cell_data.colspan = 1
+        for row_data in self.in_data:
+            for cell_data in row_data:
+                for ii in range(1, cell_data.colspan):
+                    row_data.insert(row_data.index(cell_data) + 1, InCellValue())
+                cell_data.colspan = 1
 
 
         print('----------------------------------')
