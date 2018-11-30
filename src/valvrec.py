@@ -17,8 +17,6 @@ __email__ = "mpiesina@netscape.net"
 __status__ = "Prototype"
 
 import sys
-import codecs
-from enum import IntEnum
 
 try:
     from lxml import etree
@@ -30,25 +28,18 @@ from xlstree import XlsTree
 
 
 # ----------------------------------
-#class InCellValue:
-#
-#    def __init__(self):
-#        value = ''
-#        is_heading = False
-#        colspan = 1
-#        rowspan = 1
+class InCellValue:
+    def __init__(self):
+        self.value = ''
+        self.is_heading = False
+        self.colspan = 1
+        self.rowspan = 1
 
 # ----------------------------------
 class ValvRecTree(XlsTree):
     '''xlsx.xml tools localized to valvrec'''
 
     materials = ['Stainless Steel', 'Steel', 'Brass']
-
-    class InCellLayout(IntEnum):
-        value =         0   # string
-        is_heading =    1   # bool
-        colspan =       2   # int
-        rowspan =       3   # inf
 
     def __init__(self):
 
@@ -64,16 +55,33 @@ class ValvRecTree(XlsTree):
         for row in table.xpath('xmlns:Row', namespaces = XlsTree.ns_xsl):
             row_data = []
             for cell in row.xpath('xmlns:Cell', namespaces = XlsTree.ns_xsl):
-                call_val = ''.join(cell.xpath('.//text()'))
-                cell_data = (call_val, False, 1, 1)
-
+                cell_data = InCellValue()
+                cell_data.value = ''.join(cell.xpath('.//text()'))
+                colsp = cell.get(XlsTree.ns_pref + 'MergeAcross')
+                if (colsp):
+                    cell_data.colspan = int(colsp)
+                if (cell_data.colspan > 1):
+                    cell_data.is_heading = True
+                rowsp = cell.get(XlsTree.ns_pref + 'MergeDown')
+                if (rowsp):
+                    cell_data.rowspan = int(rowsp)
                 row_data.append(cell_data)
             self.in_data.append(row_data)
+
+        # insert colspans
+#        for row_data in self.in_data:
+#            for cell_data in row_data:
+#                for ii in range(2, cell_data.colspan):
+#                    row_data.insert(row_data.index(cell_data) + 1, InCellValue())
+#                cell_data.colspan = 1
+
 
         print('----------------------------------')
         for row_data in self.in_data:
             for cell_data in row_data:
-                print(cell_data[ValvRecTree.InCellLayout.value] + ',\t', end = '')
+                # print(cell_data.value + ',\t', end = '')
+                print(str(cell_data.colspan) + ',\t', end = '')
+                # print(str(cell_data.rowspan) + ',\t', end = '')
             print()
 
 
