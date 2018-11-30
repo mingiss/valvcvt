@@ -80,8 +80,8 @@ class ValvRecTree(XlsTree):
         for row_data in self.in_data:
             for cell_data in row_data:
                 # print(cell_data.value + ',\t', end = '')
-                print(str(cell_data.colspan) + ',\t', end = '')
-                # print(str(cell_data.rowspan) + ',\t', end = '')
+                # print(str(cell_data.colspan) + ',\t', end = '')
+                print(str(cell_data.rowspan) + ',\t', end = '')
             print()
 
 
