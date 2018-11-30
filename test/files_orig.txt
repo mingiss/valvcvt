@@ -1,2 +1,4 @@
 2-way_ball.orig.xml
 cartridge.orig.xml
+2-way_SAE.xml
+2-way_threaded.xml

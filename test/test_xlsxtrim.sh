@@ -21,3 +21,13 @@ rm cartridge.fmt.xml
 # python3 /home/mingis/F/kp/src/xml/valvcvt/src/valvcvt/src/xlsxtrim.py "Cartridge ball valves.xlsx.xml" cartridge.xml
 python3 $valvcvt_path/xlsxtrim.py cartridge.orig.xml cartridge.xml
 xmllint --format cartridge.xml > cartridge.fmt.xml
+
+rm 2-way_SAE.xml
+rm 2-way_SAE.fmt.xml
+python3 $valvcvt_path/xlsxtrim.py 2-way_SAE.orig.xml 2-way_SAE.xml
+xmllint --format 2-way_SAE.xml > 2-way_SAE.fmt.xml
+
+rm 2-way_threaded.xml
+rm 2-way_threaded.fmt.xml
+python3 $valvcvt_path/xlsxtrim.py 2-way_threaded.orig.xml 2-way_threaded.xml
+xmllint --format 2-way_threaded.xml > 2-way_threaded.fmt.xml
