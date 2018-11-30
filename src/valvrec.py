@@ -80,20 +80,15 @@ class ValvRecTree(XlsTree):
             self.in_data.append(row_data)
 
         # insert colspans
-        while (True):
-            inserted = False
-            for row_data in self.in_data:
-                for cell_data in row_data:
-                    if (cell_data.colspan > 0):
-                        for ii in range(0, cell_data.colspan):
-                            row_data.insert(row_data.index(cell_data) + 1, InCellValue())
-                        cell_data.colspan = 0
-                        inserted = True
-                        break
-                if (inserted):
-                    break
-            if (not inserted):
-                break
+        for row_data in self.in_data:
+            col_ix = 0
+            while (col_ix < len(row_data)):
+                cell_data = row_data[col_ix]
+                if (cell_data.colspan > 0):
+                    for ii in range(0, cell_data.colspan):
+                        row_data.insert(col_ix + 1, InCellValue())
+                    cell_data.colspan = 0
+                col_ix = col_ix + 1
 
         # spread headings through rowspans
         max_row_len = self.calc_max_row_len()
@@ -108,6 +103,7 @@ class ValvRecTree(XlsTree):
                         if ((src_row_ix >= 0) and (len(self.in_data[src_row_ix]) > col_ix)):
                             new_cell = copy.copy(self.in_data[src_row_ix][col_ix])
                         new_cell.colspan = 0
+                        new_cell.rowspan = 0
                         for ii in range(0, cell_data.rowspan):
                             new_row_ix = row_ix + ii + 1
                             if (len(self.in_data) > new_row_ix):
@@ -115,6 +111,7 @@ class ValvRecTree(XlsTree):
                                 self.in_data[new_row_ix].insert(col_ix, copy.copy(new_cell))
                         self.in_data[row_ix][col_ix] = copy.copy(new_cell)
                         max_row_len = self.calc_max_row_len()
+                        cell_data.rowspan = 0
             col_ix = col_ix + 1
 
 
