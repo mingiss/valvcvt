@@ -42,7 +42,7 @@ class InCellValue:
 class SegHeadingCol:
     '''One column of data segment headings of certain attribute type'''
 
-    # attributes of classification in order their titles appear in front of the output rows
+    # attributes of classification
     # values of the dictionary -- lists of keywords for attribute class recognition
     class_attribs = \
     { \
@@ -58,6 +58,9 @@ class SegHeadingCol:
         'Serie/Verbindungstyp':     ['DIN', 'ISO', 'ANSI', 'SAE'], \
         'Metrisch/UNC':             ['METRIC', 'UNC'] \
     }
+
+    # list of the attribute names arranged in order their headings appear in front of the data output rows
+    attr_keys = ['Kategorie', 'Familie', 'Material', 'Bauform', 'Serie/Verbindungstyp', 'Metrisch/UNC']
 
 
     def __init__(self):
@@ -327,6 +330,18 @@ class ValvRecTree(XlsTree):
         return None
 
 
+    def append_seg_data(self, data_seg):
+        '''Appends DataSeg object data_seg values and headings to the self.out_data'''
+
+        for seg_row in range(0, data_seg.length):
+            data_row = []
+            for key in SegHeadingCol.attr_keys:
+                data_row.append(data_seg.headings[key].values[seg_row])
+            for ix in range(0, DataSeg.pat_wdt):
+                data_row.append(self.in_data[data_seg.yy + seg_row][data_seg.xx + ix].value)
+            self.out_data.append(data_row)
+
+
     def process_table(self, table):
         '''
         processing of one input worksheet table
@@ -339,10 +354,12 @@ class ValvRecTree(XlsTree):
         while (data_seg):
             data_seg = self.search_data_pattern(data_seg)
             if (data_seg):
-                print (data_seg.location())
-                for attr in sorted(data_seg.headings.keys()):
-                    print(attr, end = ': ')
-                    print(data_seg.headings[attr].values)
+                # print (data_seg.location())
+                # for attr in sorted(data_seg.headings.keys()):
+                #    print(attr, end = ': ')
+                #    print(data_seg.headings[attr].values)
+
+                self.append_seg_data(data_seg)
 
 
     def process_in_file(self, in_fname):
@@ -359,8 +376,28 @@ class ValvRecTree(XlsTree):
             self.process_table(table)
 
 
-    def write_csv(self, out_fname):
-        pass
+    def write_csv(self, out_fname, delim):
+        """
+        Exports self.out_data to the file in `CSV` format
+        string parameter `delim` used as delimiters between cells in the row
+        return False in case of error, True -- in case of success
+        """
+
+        try:
+            with open(out_fname, 'w') as out_file:
+                # hat
+                out_file.write(SegHeadingCol.attr_keys.join(delim) + delim)
+                out_file.write(DataSeg.seg_head.join(delim) + '\n')
+
+                # data
+                for data_row in self.out_data:
+                    out_file.write(delim.join(data_row) + '\n')
+
+        except Exception as err:
+            self.last_error = 'Unable to write file %s (%s)' % (out_fname, err)
+            return(False)
+
+        return(True)
 
 
 # ----------------------------------
@@ -387,7 +424,7 @@ def main():
         if (in_fname != 'orig/README.txt'):
             tree.process_in_file(in_fname)
 
-    tree.write_csv(out_fname)
+    tree.write_csv(out_fname, ',')
 
 
 if __name__ == "__main__":

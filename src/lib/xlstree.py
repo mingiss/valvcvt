@@ -152,7 +152,7 @@ class XlsTree:
 
     def export_csv(self, out_fname, delim):
         """
-        Exports all tables to teh file in `CSV` format,
+        Exports all tables to the file in `CSV` format,
         string parameter `delim` used as delimiters between cells in the row
         return False in case of error, True -- in case of success
         """
