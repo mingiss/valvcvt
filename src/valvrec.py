@@ -42,6 +42,8 @@ class ValvRecTree(XlsTree):
 
     materials = ['Stainless Steel', 'Steel', 'Brass']
 
+    pat_wdt = 3 # the width of data pattern to be searched
+
     def __init__(self):
 
         out_data = []   # array of output rows -- arrays of string cells
@@ -117,6 +119,13 @@ class ValvRecTree(XlsTree):
                         max_row_len = self.calc_max_row_len()
                         cell_data.rowspan = 0
             col_ix = col_ix + 1
+
+        # align rows to have equal lengths and
+        # additional columns at the end for data pattern being searched not to exceed the lengths
+        max_row_len = self.calc_max_row_len()
+        for row_data in self.in_data:
+            for ii in range(len(row_data), max_row_len + ValvRecTree.pat_wdt - 1):
+                row_data.append(InCellValue())
 
 
         print('----------------------------------')
