@@ -37,7 +37,7 @@ class InCellValue:
         self.colspan = 0
         self.rowspan = 0
 
-class SegHeading:
+class SegHeadingCol:
     '''One column of data segment headings of certain attribute type'''
 
     # attributes of classification in order their titles appear in front of the output rows
@@ -58,8 +58,8 @@ class SegHeading:
     }
 
     def __init__(self):
-        attrib = '' # key to class_attribs when recognized
-        values = [] # heading values itself, the amount should correspond to the height of data segment
+        self.attrib = '' # key to class_attribs when recognized
+        self.values = [] # heading values itself, the amount should correspond to the height of data segment
 
 class DataSeg:
     pat_wdt = 3 # the width of data segment pattern to be searched
@@ -70,11 +70,11 @@ class DataSeg:
         self.xx = 0
         self.yy = 0
         self.length = 1 # number of rows in the segment
-        self.headings = [] # list of SegHeading arrays
+        self.headings = [] # list of SegHeadingCol's
 
     def location(self):
         '''Formats segment coordinates in Excell notation'''
-        shift = len(SegHeading.class_attribs)
+        shift = len(SegHeadingCol.class_attribs)
         return (chr(ord('A') + self.xx - shift) + str(self.yy + 1) + ':' + chr(ord('A') + self.xx + DataSeg.pat_wdt - 1 - shift) + str(self.yy + self.length))
 
 
@@ -83,8 +83,7 @@ class ValvRecTree(XlsTree):
     '''xlsx.xml tools localized to valvrec'''
 
     def __init__(self):
-
-        out_data = []   # array of output rows -- arrays of string cells
+        self.out_data = []   # array of output rows -- arrays of string cells
 
 
     def calc_max_row_len(self):
@@ -167,7 +166,7 @@ class ValvRecTree(XlsTree):
                     DataSeg.pat_wdt - 1):
                 row_data.append(InCellValue())
             # additional starting columns for attribute heading searching in case of absence of them
-            for ii in range(0, len(SegHeading.class_attribs)):
+            for ii in range(0, len(SegHeadingCol.class_attribs)):
                 row_data.insert(0, InCellValue())
 
         # print('----------------------------------')
@@ -220,6 +219,18 @@ class ValvRecTree(XlsTree):
                     else:
                         print ('Error: Data segment {} has no heading {}'.format(new_seg.location(), DataSeg.seg_head))
 
+                    # extracting headings
+                    for ii in range(0, len(SegHeadingCol.class_attribs)):
+                        cur_head = SegHeadingCol()
+                        found = False
+                        for seg_row_ix in range(new_seg.yy, new_seg.yy + new_seg.length):
+                            cur_head.values.append(self.in_data[seg_row_ix][col_ix - 1 - ii].value)
+                            found = (found or self.in_data[seg_row_ix][col_ix - 1 - ii].is_heading)
+                        if (found):
+                            new_seg.headings.append(cur_head)
+                        else:
+                            break
+
                     return new_seg
 
         return None
@@ -238,6 +249,8 @@ class ValvRecTree(XlsTree):
             data_seg = self.search_data_pattern(data_seg)
             if (data_seg):
                 print (data_seg.location())
+                for head in data_seg.headings:
+                    print(head.values)
 
 
     def process_in_file(self, in_fname):
