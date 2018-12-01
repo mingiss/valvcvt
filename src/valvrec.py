@@ -132,7 +132,7 @@ class ValvRecTree(XlsTree):
                 self.material = mat
                 break
 
-        # array of input rows -- arrays of tupplets, each conforming to layout InCellLayout
+        # array of input rows -- arrays of the class InCellValue objects
         self.in_data = []
 
         for row in table.xpath('xmlns:Row', namespaces = XlsTree.ns_xsl):
