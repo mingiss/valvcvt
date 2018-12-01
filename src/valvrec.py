@@ -40,7 +40,22 @@ class InCellValue:
 class ValvRecTree(XlsTree):
     '''xlsx.xml tools localized to valvrec'''
 
-    materials = ['Stainless Steel', 'Steel', 'Brass']
+    # attributes of classification in order their titles appear in front of the output rows
+    # values of the dictionary -- lists of keywords for attribute class recognition
+    class_attribs = \
+    { \
+        'Kategorie':                [], \
+        'Familie':                  [], \
+        \
+         # keywords of this attribute should be exact values of all possible materials,
+         # because in some files they are provided as the suffices of worksheet names
+         # should be arranged in increasing ambiguity order
+        'Material':                 ['Stainless Steel', 'Steel', 'Brass'], \
+        \
+        'Bauform':                  [], \
+        'Serie/Verbindungstyp':     [], \
+        'Metrisch/UNC':             [] \
+    }
 
     pat_wdt = 3 # the width of data pattern to be searched
 
@@ -120,12 +135,16 @@ class ValvRecTree(XlsTree):
                         cell_data.rowspan = 0
             col_ix = col_ix + 1
 
-        # align rows to have equal lengths and
-        # additional columns at the end for data pattern being searched not to exceed the lengths
+        # align rows to have equal lengths
         max_row_len = self.calc_max_row_len()
         for row_data in self.in_data:
-            for ii in range(len(row_data), max_row_len + ValvRecTree.pat_wdt - 1):
+            for ii in range(len(row_data), max_row_len + \
+                    # additional columns at the end for data pattern being searched not to exceed the lengths
+                    ValvRecTree.pat_wdt - 1):
                 row_data.append(InCellValue())
+            # additional starting columns for attribute heading searching in case of absence of them
+            for ii in range(0, len(ValvRecTree.class_attribs)):
+                row_data.insert(0, InCellValue())
 
 
         print('----------------------------------')
