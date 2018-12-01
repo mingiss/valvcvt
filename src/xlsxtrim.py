@@ -18,7 +18,7 @@ __status__ = "Prototype"
 import sys
 import codecs
 
-from xlstree import xlstree
+from xlstree import XlsTree
 
 def main():
     # ----------------------------------
@@ -29,7 +29,7 @@ def main():
     in_fname = sys.argv[1]
     out_fname = sys.argv[2]
 
-    tree = xlstree()
+    tree = XlsTree()
 
     if (not tree.load(in_fname)):
         print("Error: " + tree.last_error)
