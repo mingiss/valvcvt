@@ -88,7 +88,7 @@ class DataSeg:
         self.xx = 0
         self.yy = 0
         self.length = 0 # number of rows in the segment
-        self.headings = [] # list of SegHeadingCol's
+        self.headings = {} # dictionary of SegHeadingCol's, keys -- same as these of SegHeadingCol.class_attribs
 
     def location(self):
         '''Formats segment coordinates in Excell notation'''
@@ -209,7 +209,8 @@ class ValvRecTree(XlsTree):
                 found = (found or self.in_data[seg_row_ix][col_ix - 1 - ii].is_heading)
             if (found):
                 cur_head.recognize()
-                data_seg.headings.append(cur_head)
+                if (cur_head.attrib):
+                    data_seg.headings[cur_head.attrib] = cur_head
             else:
                 break
 
@@ -287,9 +288,9 @@ class ValvRecTree(XlsTree):
             data_seg = self.search_data_pattern(data_seg)
             if (data_seg):
                 print (data_seg.location())
-                for head in data_seg.headings:
-                    print(head.attrib, end = ': ')
-                    print(head.values)
+                for attr in data_seg.headings.keys():
+                    print(attr, end = ': ')
+                    print(data_seg.headings[attr].values)
 
 
     def process_in_file(self, in_fname):
