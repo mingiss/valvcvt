@@ -53,7 +53,7 @@ class SegHeadingCol:
          # should be arranged in increasing ambiguity order
         'Material':                 ['Stainless Steel', 'Steel', 'Brass'], \
 
-        'Bauform':                  ['STANDARD'], \
+        'Bauform':                  ['STANDARD', 'ASSEMBLING'], \
         'Serie/Verbindungstyp':     ['DIN', 'ISO', 'ANSI', 'SAE'], \
         'Metrisch/UNC':             ['METRIC', 'UNC'] \
     }
@@ -223,8 +223,12 @@ class ValvRecTree(XlsTree):
         '''
 
         max_row_len = self.calc_max_row_len()
-        for col_ix in range (prev_seg.xx, max_row_len):
-            for row_ix in range(prev_seg.yy + prev_seg.length, len(self.in_data)):
+        col_ix = prev_seg.xx
+        while (col_ix < max_row_len):
+            row_ix = 0
+            if (col_ix == prev_seg.xx):
+                row_ix = prev_seg.yy + prev_seg.length
+            while (row_ix < len(self.in_data)):
                 in_cell = self.in_data[row_ix][col_ix]
                 if (in_cell.value and (not in_cell.is_heading)):
                     new_seg = DataSeg()
@@ -259,6 +263,13 @@ class ValvRecTree(XlsTree):
                     self.extract_segm_headings(new_seg)
 
                     return new_seg
+
+                row_ix += 1
+
+            if (col_ix == prev_seg.xx):
+                col_ix += DataSeg.pat_wdt
+            else:
+                col_ix += 1
 
         return None
 
