@@ -386,8 +386,8 @@ class ValvRecTree(XlsTree):
         try:
             with open(out_fname, 'w') as out_file:
                 # hat
-                out_file.write(SegHeadingCol.attr_keys.join(delim) + delim)
-                out_file.write(DataSeg.seg_head.join(delim) + '\n')
+                out_file.write(delim.join(SegHeadingCol.attr_keys) + delim)
+                out_file.write(delim.join(DataSeg.seg_head) + '\n')
 
                 # data
                 for data_row in self.out_data:

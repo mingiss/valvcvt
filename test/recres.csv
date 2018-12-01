@@ -1,4 +1,4 @@
-Kategorie,Familie,Material,Bauform,Serie/Verbindungstyp,Metrisch/UNC,,,
+Kategorie,Familie,Material,Bauform,Serie/Verbindungstyp,Metrisch/UNC,Type,PN [bar],filename [.stp]
 2-way_ball.orig,KHZ-SAE,Steel,,ISO 6162-1,METRIC,KHZ-DN13-SAE210,350,KHZ-DN13-SAE210 M
 2-way_ball.orig,KHZ-SAE,Steel,,ISO 6162-1,METRIC,KHZ-DN20-SAE210,350,KHZ-DN20-SAE210 M
 2-way_ball.orig,KHZ-SAE,Steel,,ISO 6162-1,METRIC,KHZ-DN25-SAE210,320,KHZ-DN25-SAE210 M
