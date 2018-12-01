@@ -438,19 +438,19 @@ Kategorie,Familie,Material,Bauform,Serie/Verbindungstyp,Metrisch/UNC,Type,PN [ba
 2-way ball valves with ISO connections.xlsx,KH-ISO,Stainless Steel,,ISO 320,,KH-DN125-ISO320,350,KH-DN125-ISO320
 2-way ball valves with ISO connections.xlsx,KH-ISO,Stainless Steel,,ISO 320,,KH-DN150-ISO320,350,KH-DN150-ISO320
 2-way ball valves with ISO connections.xlsx,KH-ISO,Stainless Steel,,ISO 320,,KH-DN200-ISO320,350,KH-DN200-ISO320
-2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,,,KH-DN40-CET250,250,KH-DN40-CET250-STL
-2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,,,KH-DN50-CET250,250,KH-DN50-CET250 (2in)-STL
-2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,,,KH-DN50-CET250,250,KH-DN50-CET250 (2.5in)-STL
-2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,,,KH-DN65-CET250,250,KH-DN65-CET250-STL
-2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,,,KH-DN80-CET250 (PN100),100,-
-2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,,,KH-DN80-CET250 (PN250),250,-
-2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,,,KH-DN100-CET250,250,KH-DN100-CET250-STL
-2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,,,KH-DN40-CET400,400,KH-DN40-CET400-STL
-2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,,,KH-DN50-CET400,400,KH-DN50-CET400 (2in)-STL
-2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,,,KH-DN50-CET400,400,KH-DN50-CET400 (2.5in)-STL
-2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,,,KH-DN65-CET400,400,KH-DN65-CET400-STL
-2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,,,KH-DN80-CET400 (PN100),100,KH-DN80-CET400 (PN100)-STL
-2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,,,KH-DN80-CET400 (PN400),400,-
+2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,CETOP 250 BAR,,KH-DN40-CET250,250,KH-DN40-CET250-STL
+2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,CETOP 250 BAR,,KH-DN50-CET250,250,KH-DN50-CET250 (2in)-STL
+2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,CETOP 250 BAR,,KH-DN50-CET250,250,KH-DN50-CET250 (2.5in)-STL
+2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,CETOP 250 BAR,,KH-DN65-CET250,250,KH-DN65-CET250-STL
+2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,CETOP 250 BAR,,KH-DN80-CET250 (PN100),100,-
+2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,CETOP 250 BAR,,KH-DN80-CET250 (PN250),250,-
+2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,CETOP 250 BAR,,KH-DN100-CET250,250,KH-DN100-CET250-STL
+2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,CETOP 400 BAR,,KH-DN40-CET400,400,KH-DN40-CET400-STL
+2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,CETOP 400 BAR,,KH-DN50-CET400,400,KH-DN50-CET400 (2in)-STL
+2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,CETOP 400 BAR,,KH-DN50-CET400,400,KH-DN50-CET400 (2.5in)-STL
+2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,CETOP 400 BAR,,KH-DN65-CET400,400,KH-DN65-CET400-STL
+2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,CETOP 400 BAR,,KH-DN80-CET400 (PN100),100,KH-DN80-CET400 (PN100)-STL
+2-way ball valves with ISO connections.xlsx,KH-CETOP,Steel,,CETOP 400 BAR,,KH-DN80-CET400 (PN400),400,-
 2-way ball valves with SAE connections.xlsx,BKH_BKHP-SAEFS,STEEL,,ISO 6162-1,,BKH-DN13-SAEFS210,350,BKH-DN13-SAEFS210
 2-way ball valves with SAE connections.xlsx,BKH_BKHP-SAEFS,STEEL,,ISO 6162-1,,BKH-DN20-SAEFS210,350,BKH-DN20-SAEFS210
 2-way ball valves with SAE connections.xlsx,BKH_BKHP-SAEFS,STEEL,,ISO 6162-1,,BKH-DN25-SAEFS210,315,BKH-DN25-SAEFS210
