@@ -232,7 +232,7 @@ class ValvRecTree(XlsTree):
         # add missing headings
         if (not 'Kategorie' in data_seg.headings.keys()):
             cur_head = SegHeadingCol()
-            cur_head.values = [os.path.splitext(os.path.basename(self.fname))[0]] * data_seg.length
+            cur_head.values = [self.kategorie] * data_seg.length
             data_seg.headings['Kategorie'] = cur_head
 
         if (not 'Material' in data_seg.headings.keys()):
@@ -369,6 +369,9 @@ class ValvRecTree(XlsTree):
             print("Error: " + tree.last_error)
             sys.exit(1)
         print('Processing file: ' + self.fname)
+
+        fname_elems = os.path.basename(self.fname).split('.')
+        self.kategorie = fname_elems[0]
 
         self.trim()
 
