@@ -251,7 +251,20 @@ class ValvRecTree(XlsTree):
             cur_head.values = [self.ws_name] * data_seg.length
             data_seg.headings['Familie'] = cur_head
 
+        if (not 'Bauform' in data_seg.headings.keys()):
+            cur_head = SegHeadingCol()
+            cur_head.values = [''] * data_seg.length
+            data_seg.headings['Bauform'] = cur_head
 
+        if (not 'Serie/Verbindungstyp' in data_seg.headings.keys()):
+            cur_head = SegHeadingCol()
+            cur_head.values = [''] * data_seg.length
+            data_seg.headings['Serie/Verbindungstyp'] = cur_head
+
+        if (not 'Metrisch/UNC' in data_seg.headings.keys()):
+            cur_head = SegHeadingCol()
+            cur_head.values = [''] * data_seg.length
+            data_seg.headings['Metrisch/UNC'] = cur_head
 
 
     def search_data_pattern(self, prev_seg):
