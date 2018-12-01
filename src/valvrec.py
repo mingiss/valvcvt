@@ -242,11 +242,14 @@ class ValvRecTree(XlsTree):
                 ws_name_elems = self.ws_name.split(self.material)
                 if (len(ws_name_elems) > 1):
                     if ((len(ws_name_elems) == 2) and (not ws_name_elems[1])):
-                        self.ws_name = ws_name_elems[0]
+                        self.ws_name = ws_name_elems[0].strip()
                     else:
                         print('Error: worksheet name suffix as a material key is ambiguous: ' + self.ws_name)
 
-
+        if (not 'Familie' in data_seg.headings.keys()):
+            cur_head = SegHeadingCol()
+            cur_head.values = [self.ws_name] * data_seg.length
+            data_seg.headings['Familie'] = cur_head
 
 
 
