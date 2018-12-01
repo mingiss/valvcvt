@@ -37,6 +37,7 @@ class InCellValue:
         self.colspan = 0
         self.rowspan = 0
 
+
 class SegHeadingCol:
     '''One column of data segment headings of certain attribute type'''
 
@@ -52,14 +53,31 @@ class SegHeadingCol:
          # should be arranged in increasing ambiguity order
         'Material':                 ['Stainless Steel', 'Steel', 'Brass'], \
 
-        'Bauform':                  [], \
-        'Serie/Verbindungstyp':     [], \
-        'Metrisch/UNC':             [] \
+        'Bauform':                  ['STANDARD'], \
+        'Serie/Verbindungstyp':     ['DIN', 'ISO', 'ANSI', 'SAE'], \
+        'Metrisch/UNC':             ['METRIC', 'UNC'] \
     }
+
 
     def __init__(self):
         self.attrib = '' # key to class_attribs when recognized
         self.values = [] # heading values itself, the amount should correspond to the height of data segment
+
+
+    def recognize(self):
+        '''Assigns one of the attribute keys to the self.attrib'''
+
+        for attr in SegHeadingCol.class_attribs.keys():
+            for head in self.values:
+                for pattern in SegHeadingCol.class_attribs[attr]:
+                    if (pattern.lower() in head.lower()):
+                        if ((not self.attrib) or (self.attrib == attr)):
+                            self.attrib = attr
+                        else:
+                            print('Error: headings {} recognized as both -- {} and {}'.format(self.values, self.attrib, attr))
+        if (not self.attrib):
+            print('Error: headings {} type is not recognized'.format(self.values))
+
 
 class DataSeg:
     pat_wdt = 3 # the width of data segment pattern to be searched
@@ -179,6 +197,23 @@ class ValvRecTree(XlsTree):
         #    print()
 
 
+    def extract_segm_headings(self, data_seg):
+        '''extracts heading columns left to the segment and appends them to the data_seg.headings'''
+
+        col_ix = data_seg.xx
+        for ii in range(0, len(SegHeadingCol.class_attribs)):
+            cur_head = SegHeadingCol()
+            found = False
+            for seg_row_ix in range(data_seg.yy, data_seg.yy + data_seg.length):
+                cur_head.values.append(self.in_data[seg_row_ix][col_ix - 1 - ii].value)
+                found = (found or self.in_data[seg_row_ix][col_ix - 1 - ii].is_heading)
+            if (found):
+                cur_head.recognize()
+                data_seg.headings.append(cur_head)
+            else:
+                break
+
+
     def search_data_pattern(self, prev_seg):
         '''
         Searches for the next 3 x N data segment
@@ -220,16 +255,7 @@ class ValvRecTree(XlsTree):
                         print ('Error: Data segment {} has no heading {}'.format(new_seg.location(), DataSeg.seg_head))
 
                     # extracting headings
-                    for ii in range(0, len(SegHeadingCol.class_attribs)):
-                        cur_head = SegHeadingCol()
-                        found = False
-                        for seg_row_ix in range(new_seg.yy, new_seg.yy + new_seg.length):
-                            cur_head.values.append(self.in_data[seg_row_ix][col_ix - 1 - ii].value)
-                            found = (found or self.in_data[seg_row_ix][col_ix - 1 - ii].is_heading)
-                        if (found):
-                            new_seg.headings.append(cur_head)
-                        else:
-                            break
+                    self.extract_segm_headings(new_seg)
 
                     return new_seg
 
@@ -250,6 +276,7 @@ class ValvRecTree(XlsTree):
             if (data_seg):
                 print (data_seg.location())
                 for head in data_seg.headings:
+                    print(head.attrib, end = ': ')
                     print(head.values)
 
 
