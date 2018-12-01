@@ -64,11 +64,19 @@ class SegHeading:
 class DataSeg:
     pat_wdt = 3 # the width of data segment pattern to be searched
 
+    seg_head = ['Type', 'PN [bar]', 'filename [.stp]']
+
     def __init__(self):
         self.xx = 0
         self.yy = 0
-        self.length = 0 # number of rows in the segment
+        self.length = 1 # number of rows in the segment
         self.headings = [] # list of SegHeading arrays
+
+    def location(self):
+        '''Formats segment coordinates in Excell notation'''
+        shift = len(SegHeading.class_attribs)
+        return (chr(ord('A') + self.xx - shift) + str(self.yy + 1) + ':' + chr(ord('A') + self.xx + DataSeg.pat_wdt - 1 - shift) + str(self.yy + self.length))
+
 
 # ----------------------------------
 class ValvRecTree(XlsTree):
@@ -162,23 +170,58 @@ class ValvRecTree(XlsTree):
             for ii in range(0, len(SegHeading.class_attribs)):
                 row_data.insert(0, InCellValue())
 
-        print('----------------------------------')
-        for row_data in self.in_data:
-            for cell_data in row_data:
-                print(cell_data.value + ',\t', end = '')
+        # print('----------------------------------')
+        # for row_data in self.in_data:
+        #    for cell_data in row_data:
+        #        print(cell_data.value + ',\t', end = '')
         #        print(str(cell_data.colspan) + ',\t', end = '')
         #        print(str(cell_data.rowspan) + ',\t', end = '')
         #        print(str(cell_data.is_heading) + ',\t', end = '')
-            print()
+        #    print()
 
 
-    def search_data_pattern(self, data_seg):
+    def search_data_pattern(self, prev_seg):
         '''
         Searches for the next 3 x N data segment
         Current file table data should be read to self.in_data using scan_in_data()
-        parameter data_seg -- previous data segment of the type DataSeg
+        parameter prev_seg -- previous data segment of the type DataSeg
         returns newly found DataSeg object or None in case of the last one
         '''
+
+        max_row_len = self.calc_max_row_len()
+        for col_ix in range (prev_seg.xx, max_row_len):
+            for row_ix in range(prev_seg.yy + prev_seg.length, len(self.in_data)):
+                in_cell = self.in_data[row_ix][col_ix]
+                if (in_cell.value and (not in_cell.is_heading)):
+                    new_seg = DataSeg()
+                    new_seg.xx = col_ix
+                    new_seg.yy = row_ix
+
+                    for seg_row_ix in range(row_ix + 1, len(self.in_data)):
+                        found = False
+                        for ii in range(0, DataSeg.pat_wdt):
+                            next_cell = self.in_data[seg_row_ix][col_ix + ii]
+                            if (next_cell.value and (not next_cell.is_heading)):
+                                found = True
+                                break
+                        if (found):
+                            new_seg.length += 1
+                        else:
+                            break
+
+                    has_head = True
+                    for ii in range(0, DataSeg.pat_wdt):
+                        if (self.in_data[row_ix][col_ix + ii].value != DataSeg.seg_head[ii]):
+                            has_head = False
+                            break
+                    if (has_head):
+                        new_seg.yy += 1
+                        new_seg.length -= 1
+                    else:
+                        print ('Error: Data segment {} has no heading {}'.format(new_seg.location(), DataSeg.seg_head))
+
+                    return new_seg
+
         return None
 
 
@@ -193,6 +236,8 @@ class ValvRecTree(XlsTree):
         data_seg = DataSeg()
         while (data_seg):
             data_seg = self.search_data_pattern(data_seg)
+            if (data_seg):
+                print (data_seg.location())
 
 
     def process_in_file(self, in_fname):
