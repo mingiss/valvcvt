@@ -107,7 +107,11 @@ class ValvRecTree(XlsTree):
                         for ii in range(0, cell_data.rowspan):
                             new_row_ix = row_ix + ii + 1
                             if (len(self.in_data) > new_row_ix):
-                                # TODO: append empty cells in case, if len(self.in_data[new_row_ix]) < col_ix
+
+                                # appending empty cells in case, if len(self.in_data[new_row_ix]) < col_ix
+                                for ii in range(len(self.in_data[new_row_ix]), col_ix):
+                                    self.in_data[new_row_ix].append(InCellValue())
+
                                 self.in_data[new_row_ix].insert(col_ix, copy.copy(new_cell))
                         self.in_data[row_ix][col_ix] = copy.copy(new_cell)
                         max_row_len = self.calc_max_row_len()
