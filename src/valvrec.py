@@ -14,7 +14,7 @@ Using:
 __author__ = "Mindaugas Piešina"
 __version__ = "0.0.1"
 __email__ = "mpiesina@netscape.net"
-__status__ = "Prototype"
+__status__ = "Development"
 
 import sys
 import os
@@ -55,7 +55,7 @@ class SegHeadingCol:
         'Material':                 ['Stainless Steel', 'Steel', 'Brass'], \
 
         'Bauform':                  ['STANDARD', 'ASSEMBLING'], \
-        'Serie/Verbindungstyp':     ['DIN', 'ISO', 'ANSI', 'SAE'], \
+        'Serie/Verbindungstyp':     ['DIN', 'ISO', 'ANSI', 'SAE', 'CETOP'], \
         'Metrisch/UNC':             ['METRIC', 'UNC'] \
     }
 
@@ -382,6 +382,8 @@ class ValvRecTree(XlsTree):
         string parameter `delim` used as delimiters between cells in the row
         return False in case of error, True -- in case of success
         """
+
+        print('Writing to the file: ' + out_fname)
 
         try:
             with open(out_fname, 'w') as out_file:
