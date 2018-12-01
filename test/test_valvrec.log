@@ -34,6 +34,7 @@ Processing file: 2-way_ball.orig.xml
 ,	,	,	,	,	,	ISO 6162-2,	UNC,	KHZ-DN32-SAE420,	420,	KHZ-DN32-SAE420 U,	,	,	
 ,	,	,	,	,	,	ISO 6162-2,	UNC,	KHZ-DN40-SAE420,	420,	KHZ-DN40-SAE420 U,	,	,	
 ,	,	,	,	,	,	ISO 6162-2,	UNC,	KHZ-DN50-SAE420,	420,	KHZ-DN50-SAE420 U,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	,	,	
 ----------------------------------
 ,	,	,	,	,	,	ISO 6162-1,	,	,	,	,	,	,	
 ,	,	,	,	,	,	ISO 6162-1,	METRIC,	,	,	,	,	,	
@@ -69,6 +70,7 @@ Processing file: 2-way_ball.orig.xml
 ,	,	,	,	,	,	ISO 6162-2,	UNC,	KHZ-DN32-SAE420,	420,	KHZ-DN32-SAE420 U,	,	,	
 ,	,	,	,	,	,	ISO 6162-2,	UNC,	KHZ-DN40-SAE420,	420,	KHZ-DN40-SAE420 U,	,	,	
 ,	,	,	,	,	,	ISO 6162-2,	UNC,	KHZ-DN50-SAE420,	420,	KHZ-DN50-SAE420 U,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	,	,	
 ----------------------------------
 ,	,	,	,	,	,	METRIC,	,	,	,	,	,	
 ,	,	,	,	,	,	METRIC,	Type,	PN [bar],	filename [.stp],	,	,	
@@ -82,6 +84,7 @@ Processing file: 2-way_ball.orig.xml
 ,	,	,	,	,	,	UNC,	KH-DN80-SAE210 U-STL (PN100),	100,	KH-DN80-SAE210 U-STL (PN100),	,	,	
 ,	,	,	,	,	,	UNC,	KH-DN100-SAE210 U-STL,	35,	KH-DN100-SAE210 U-STL,	,	,	
 ,	,	,	,	,	,	UNC,	KH-DN125-SAE210 U-STL,	35,	KH-DN125-SAE210 U-STL,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	,	
 Processing file: cartridge.orig.xml
 ----------------------------------
 ,	,	,	,	,	,	Type,	PN [bar],	filename [.stp],	,	,	
@@ -93,6 +96,7 @@ Processing file: cartridge.orig.xml
 ,	,	,	,	,	,	BEKH-DN32,	315,	BEKH-DN32-STL,	,	,	
 ,	,	,	,	,	,	BEKH-DN40,	315,	BEKH-DN40-STL,	,	,	
 ,	,	,	,	,	,	BEKH-DN50,	315,	BEKH-DN50-STL,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	
 ----------------------------------
 ,	,	,	,	,	,	Type,	PN [bar],	filename [.stp],	,	,	
 ,	,	,	,	,	,	BEKH3-DN6,	500,	BEKH3-DN6-STL,	,	,	
@@ -103,6 +107,7 @@ Processing file: cartridge.orig.xml
 ,	,	,	,	,	,	BEKH3-DN32,	315,	BEKH3-DN32-STL,	,	,	
 ,	,	,	,	,	,	BEKH3-DN40,	315,	BEKH3-DN40-STL,	,	,	
 ,	,	,	,	,	,	BEKH3-DN50,	315,	BEKH3-DN50-STL,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	
 Processing file: 2-way_SAE.xml
 ----------------------------------
 ,	,	,	,	,	,	STEEL,	,	,	,	,	,	,	
@@ -147,6 +152,7 @@ Processing file: 2-way_SAE.xml
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	BKHP-DN20-SAEFS420 Lu,	420,	-,	,	,	
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	BKH-DN25-SAEFS420 Lu,	315,	-,	,	,	
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	BKHP-DN25-SAEFS420 Lu,	420,	-,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	,	,	
 ----------------------------------
 ,	,	,	,	,	,	STEEL,	,	,	,	,	,	,	
 ,	,	,	,	,	,	STEEL,	ISO 6162-1,	,	,	,	,	,	
@@ -182,6 +188,7 @@ Processing file: 2-way_SAE.xml
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	MKHP-DN32-SAEFS420 Lu,	420,	-,	,	,	
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	MKHP-DN40-SAEFS420 Lu,	420,	-,	,	,	
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	MKHP-DN50-SAEFS420 Lu,	420,	-,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	,	,	
 ----------------------------------
 ,	,	,	,	,	,	STEEL,	,	,	,	,	,	,	,	
 ,	,	,	,	,	,	STEEL,	ISO 6162-1,	,	,	,	,	,	,	
@@ -237,6 +244,7 @@ Processing file: 2-way_SAE.xml
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	UNC,	BKHP-DN20-SAE420,	420,	-,	,	,	
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	UNC,	BKH-DN25-SAE420,	315,	BKH-DN25-SAE420 U,	,	,	
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	UNC,	BKHP-DN25-SAE420,	420,	-,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	,	,	,	
 ----------------------------------
 ,	,	,	,	,	,	STEEL,	,	,	,	,	,	,	,	
 ,	,	,	,	,	,	STEEL,	ISO 6162-1,	,	,	,	,	,	,	
@@ -292,6 +300,7 @@ Processing file: 2-way_SAE.xml
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	UNC,	MKHP-DN32-SAE420,	420,	MKHP-DN32-SAE420 U-SST,	,	,	
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	UNC,	MKHP-DN40-SAE420,	420,	MKHP-DN40-SAE420 U-SST,	,	,	
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	UNC,	MKHP-DN50-SAE420,	420,	MKHP-DN50-SAE420 U-SST,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	,	,	,	
 ----------------------------------
 ,	,	,	,	,	,	STEEL,	,	,	,	,	,	,	
 ,	,	,	,	,	,	STEEL,	ISO 6162-1,	,	,	,	,	,	
@@ -319,6 +328,7 @@ Processing file: 2-way_SAE.xml
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	BKHP-DN20-SAE420 M/SAEFS420,	420,	-,	,	,	
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	BKH-DN25-SAE420 M/SAEFS420,	315,	BKH-DN25-SAE420 M_SAEFS420,	,	,	
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	BKHP-DN25-SAE420 M/SAEFS420,	420,	-,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	,	,	
 ----------------------------------
 ,	,	,	,	,	,	STEEL,	,	,	,	,	,	,	
 ,	,	,	,	,	,	STEEL,	ISO 6162-1,	,	,	,	,	,	
@@ -342,6 +352,7 @@ Processing file: 2-way_SAE.xml
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	MKHP-DN32-SAE420 M/SAEFS420,	420,	MKHP-DN32-SAE420 M_SAEFS420-SST,	,	,	
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	MKHP-DN40-SAE420 M/SAEFS420,	420,	MKHP-DN40-SAE420 M_SAEFS420-SST,	,	,	
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2,	MKHP-DN50-SAE420 M/SAEFS420,	420,	MKHP-DN50-SAE420 M_SAEFS420-SST,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	,	,	
 ----------------------------------
 ,	,	,	,	,	,	STEEL,	,	,	,	,	,	,	,	
 ,	,	,	,	,	,	STEEL,	ISO 6162-1 AND -2 (DOUBLE FLANGE PATTERN),	,	,	,	,	,	,	
@@ -430,6 +441,7 @@ Processing file: 2-way_SAE.xml
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2 (SINGLE FLANGE PATTERN),	UNC,	KH-DN32-SAE420 ,	420,	KH-DN32-SAE420 U-SST,	,	,	
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2 (SINGLE FLANGE PATTERN),	UNC,	KH-DN40-SAE420 ,	420,	KH-DN40-SAE420 U-SST,	,	,	
 ,	,	,	,	,	,	STAINLESS STEEL,	ISO 6162-2 (SINGLE FLANGE PATTERN),	UNC,	KH-DN50-SAE420 ,	420,	KH-DN50-SAE420 U-SST,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	,	,	,	
 Processing file: 2-way_threaded.xml
 ----------------------------------
 ,	,	,	,	,	,	STANDARD,	,	,	,	,	,	WITH ASSEMBLING HOLES,	,	,	,	,	,	WITH ASSEMBLING THREADS,	,	,	,	,	,	,	
@@ -490,6 +502,7 @@ Processing file: 2-way_threaded.xml
 ,	,	,	,	,	,	STANDARD,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKH-DN20-1 1/16" UN,	420,	BKH-DN20-1 1_16 UN,	,	WITH ASSEMBLING HOLES,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKH-DN20-1 1/16" UN,	420,	BKH-DN20-1 1_16 UN-AH,	,	WITH ASSEMBLING THREADS,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKH-DN20-1 1/16" UN,	420,	BKH-DN20-1 1_16 UN-AT,	,	,	
 ,	,	,	,	,	,	STANDARD,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKH-DN25-1 5/16" UN,	315,	BKH-DN25-1 5_16 UN,	,	WITH ASSEMBLING HOLES,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKH-DN25-1 5/16" UN,	315,	BKH-DN25-1 5_16 UN-AH,	,	WITH ASSEMBLING THREADS,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKH-DN25-1 5/16" UN,	315,	BKH-DN25-1 5_16 UN-AT,	,	,	
 ,	,	,	,	,	,	STANDARD,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKHP420-DN25-1 5/16" UN,	420,	BKHP420-DN25-1 5_16 UN-STL,	,	WITH ASSEMBLING HOLES,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKHP420-DN25-1 5/16" UN,	420,	-,	,	WITH ASSEMBLING THREADS,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKHP420-DN25-1 5/16" UN,	420,	-,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	
 ----------------------------------
 ,	,	,	,	,	,	STANDARD,	,	,	,	,	,	WITH ASSEMBLING HOLES,	,	,	,	,	,	WITH ASSEMBLING THREADS,	,	,	,	,	,	,	
 ,	,	,	,	,	,	STANDARD,	DIN ISO 228 FEMALE THREAD,	,	,	,	,	WITH ASSEMBLING HOLES,	DIN ISO 228 FEMALE THREAD,	,	,	,	,	WITH ASSEMBLING THREADS,	DIN ISO 228 FEMALE THREAD,	,	,	,	,	,	
@@ -552,6 +565,7 @@ Processing file: 2-way_threaded.xml
 ,	,	,	,	,	,	STANDARD,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKHP420-DN20-1 1/16"UN,	420,	-,	,	WITH ASSEMBLING HOLES,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKHP420-DN20-1 1/16"UN,	420,	-,	,	WITH ASSEMBLING THREADS,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKHP420-DN20-1 1/16"UN,	420,	-,	,	,	
 ,	,	,	,	,	,	STANDARD,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKH-DN25-1 5/16" UN,	315,	BKH-DN25-1 5_16 UN,	,	WITH ASSEMBLING HOLES,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKH-DN25-1 5/16" UN,	315,	BKH-DN25-1 5_16 UN-AH,	,	WITH ASSEMBLING THREADS,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKH-DN25-1 5/16" UN,	315,	BKH-DN25-1 5_16 UN-AT,	,	,	
 ,	,	,	,	,	,	STANDARD,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKHP420-DN25-1 5/16" UN,	420,	-,	,	WITH ASSEMBLING HOLES,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKHP420-DN25-1 5/16" UN,	420,	-,	,	WITH ASSEMBLING THREADS,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	BKHP420-DN25-1 5/16" UN,	420,	-,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	
 ----------------------------------
 ,	,	,	,	,	,	STANDARD,	,	,	,	,	,	WITH ASSEMBLING THREADS,	,	,	,	,	,	,	
 ,	,	,	,	,	,	STANDARD,	DIN ISO 228 FEMALE THREAD,	,	,	,	,	WITH ASSEMBLING THREADS,	DIN ISO 228 FEMALE THREAD,	,	,	,	,	,	
@@ -576,6 +590,7 @@ Processing file: 2-way_threaded.xml
 ,	,	,	,	,	,	STANDARD,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	MKHP420-DN32-1 5/8" UN,	420,	MKHP420-DN32-1 5_8 UN-STL,	,	WITH ASSEMBLING THREADS,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	MKHP420-DN32-1 5/8" UN,	420,	MKHP420-DN32-1 5_8 UN-STL-AT,	,	,	
 ,	,	,	,	,	,	STANDARD,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	MKHP420-DN40-1 7/8" UN,	420,	MKHP420-DN40-1 7_8 UN-STL,	,	WITH ASSEMBLING THREADS,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	MKHP420-DN40-1 7/8" UN,	420,	MKHP420-DN40-1 7_8 UN-STL-AT,	,	,	
 ,	,	,	,	,	,	STANDARD,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	MKHP420-DN50-2 1/2" UN,	420,	MKHP420-DN50-2 1_2 UN-STL,	,	WITH ASSEMBLING THREADS,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	MKHP420-DN50-2 1/2" UN,	420,	MKHP420-DN50-2 1_2 UN-STL-AT,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	,	
 ----------------------------------
 ,	,	,	,	,	,	STANDARD,	,	,	,	,	,	,	
 ,	,	,	,	,	,	STANDARD,	DIN ISO 228 FEMALE THREAD,	,	,	,	,	,	
@@ -600,3 +615,4 @@ Processing file: 2-way_threaded.xml
 ,	,	,	,	,	,	STANDARD,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	MKHP420-DN32-1 5/8" UN,	420,	MKHP420-DN32-1 5_8 UN-SST,	,	,	
 ,	,	,	,	,	,	STANDARD,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	MKHP420-DN40-1 7/8" UN,	420,	MKHP420-DN40-1 7_8 UN-SST,	,	,	
 ,	,	,	,	,	,	STANDARD,	SAE J514/ISO/DIS11926-1 FEMALE THREAD,	MKHP420-DN50-2 1/2" UN,	420,	MKHP420-DN50-2 1_2 UN-SST,	,	,	
+,	,	,	,	,	,	,	,	,	,	,	,	,	

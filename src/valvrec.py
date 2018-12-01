@@ -30,15 +30,15 @@ from xlstree import XlsTree
 
 # ----------------------------------
 class InCellValue:
+    '''Element of the ValvRecTree.in_data'''
     def __init__(self):
         self.value = ''
         self.is_heading = False
         self.colspan = 0
         self.rowspan = 0
 
-# ----------------------------------
-class ValvRecTree(XlsTree):
-    '''xlsx.xml tools localized to valvrec'''
+class SegHeading:
+    '''One column of data segment headings of certain attribute type'''
 
     # attributes of classification in order their titles appear in front of the output rows
     # values of the dictionary -- lists of keywords for attribute class recognition
@@ -46,18 +46,33 @@ class ValvRecTree(XlsTree):
     { \
         'Kategorie':                [], \
         'Familie':                  [], \
-        \
+
          # keywords of this attribute should be exact values of all possible materials,
          # because in some files they are provided as the suffices of worksheet names
          # should be arranged in increasing ambiguity order
         'Material':                 ['Stainless Steel', 'Steel', 'Brass'], \
-        \
+
         'Bauform':                  [], \
         'Serie/Verbindungstyp':     [], \
         'Metrisch/UNC':             [] \
     }
 
-    pat_wdt = 3 # the width of data pattern to be searched
+    def __init__(self):
+        attrib = '' # key to class_attribs when recognized
+        values = [] # heading values itself, the amount should correspond to the height of data segment
+
+class DataSeg:
+    pat_wdt = 3 # the width of data segment pattern to be searched
+
+    def __init__(self):
+        self.xx = 0
+        self.yy = 0
+        self.length = 0 # number of rows in the segment
+        self.headings = [] # list of SegHeading arrays
+
+# ----------------------------------
+class ValvRecTree(XlsTree):
+    '''xlsx.xml tools localized to valvrec'''
 
     def __init__(self):
 
@@ -136,25 +151,35 @@ class ValvRecTree(XlsTree):
             col_ix = col_ix + 1
 
         # align rows to have equal lengths
+        self.in_data.append([]) # appending empty row for data pattern search not to exceed amount of rows
         max_row_len = self.calc_max_row_len()
         for row_data in self.in_data:
             for ii in range(len(row_data), max_row_len + \
                     # additional columns at the end for data pattern being searched not to exceed the lengths
-                    ValvRecTree.pat_wdt - 1):
+                    DataSeg.pat_wdt - 1):
                 row_data.append(InCellValue())
             # additional starting columns for attribute heading searching in case of absence of them
-            for ii in range(0, len(ValvRecTree.class_attribs)):
+            for ii in range(0, len(SegHeading.class_attribs)):
                 row_data.insert(0, InCellValue())
-
 
         print('----------------------------------')
         for row_data in self.in_data:
             for cell_data in row_data:
                 print(cell_data.value + ',\t', end = '')
-                # print(str(cell_data.colspan) + ',\t', end = '')
-                # print(str(cell_data.rowspan) + ',\t', end = '')
-                # print(str(cell_data.is_heading) + ',\t', end = '')
+        #        print(str(cell_data.colspan) + ',\t', end = '')
+        #        print(str(cell_data.rowspan) + ',\t', end = '')
+        #        print(str(cell_data.is_heading) + ',\t', end = '')
             print()
+
+
+    def search_data_pattern(self, data_seg):
+        '''
+        Searches for the next 3 x N data segment
+        Current file table data should be read to self.in_data using scan_in_data()
+        parameter data_seg -- previous data segment of the type DataSeg
+        returns newly found DataSeg object or None in case of the last one
+        '''
+        return None
 
 
     def process_table(self, table):
@@ -164,6 +189,10 @@ class ValvRecTree(XlsTree):
         '''
 
         self.scan_in_data(table)
+
+        data_seg = DataSeg()
+        while (data_seg):
+            data_seg = self.search_data_pattern(data_seg)
 
 
     def process_in_file(self, in_fname):
