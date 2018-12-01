@@ -44,36 +44,36 @@ A2:C9
 Kategorie: ['cartridge.orig', 'cartridge.orig', 'cartridge.orig', 'cartridge.orig', 'cartridge.orig', 'cartridge.orig', 'cartridge.orig', 'cartridge.orig']
 Processing file: 2-way_SAE.xml
 C4:E9
-Material: ['STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL']
 Serie/Verbindungstyp: ['ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1']
 C12:E19
-Material: ['STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL']
 Serie/Verbindungstyp: ['ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2']
 C23:E30
-Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Serie/Verbindungstyp: ['ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1']
 C33:E42
-Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Serie/Verbindungstyp: ['ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2']
 C4:E9
-Material: ['STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL']
 Serie/Verbindungstyp: ['ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1']
 C12:E17
-Material: ['STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL', 'STEEL']
 Serie/Verbindungstyp: ['ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2']
 C21:E26
-Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Serie/Verbindungstyp: ['ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1']
 C29:E34
-Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Serie/Verbindungstyp: ['ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2']
 D5:F7
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE']
@@ -156,36 +156,36 @@ Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Metrisch/UNC: ['UNC', 'UNC', 'UNC']
 Serie/Verbindungstyp: ['ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2']
 C4:E6
-Material: ['STEEL', 'STEEL', 'STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STEEL', 'STEEL', 'STEEL']
 Serie/Verbindungstyp: ['ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1']
 C9:E12
-Material: ['STEEL', 'STEEL', 'STEEL', 'STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STEEL', 'STEEL', 'STEEL', 'STEEL']
 Serie/Verbindungstyp: ['ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2']
 C16:E19
-Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Serie/Verbindungstyp: ['ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1']
 C22:E26
-Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Serie/Verbindungstyp: ['ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2']
 C4:E6
-Material: ['STEEL', 'STEEL', 'STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STEEL', 'STEEL', 'STEEL']
 Serie/Verbindungstyp: ['ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1']
 C9:E11
-Material: ['STEEL', 'STEEL', 'STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STEEL', 'STEEL', 'STEEL']
 Serie/Verbindungstyp: ['ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2']
 C15:E17
-Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Serie/Verbindungstyp: ['ISO 6162-1', 'ISO 6162-1', 'ISO 6162-1']
 C20:E22
-Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE']
+Material: ['STAINLESS STEEL', 'STAINLESS STEEL', 'STAINLESS STEEL']
 Serie/Verbindungstyp: ['ISO 6162-2', 'ISO 6162-2', 'ISO 6162-2']
 D5:F14
 Kategorie: ['2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE', '2-way_SAE']
