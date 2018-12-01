@@ -214,6 +214,13 @@ class ValvRecTree(XlsTree):
             else:
                 break
 
+        # add missing headings
+        if (not 'Kategorie' in data_seg.headings.keys()):
+            cur_head = SegHeadingCol()
+            for ii in range(0, data_seg.length):
+                cur_head.values.append(os.path.splitext(os.path.basename(self.fname))[0])
+            data_seg.headings['Kategorie'] = cur_head
+
 
     def search_data_pattern(self, prev_seg):
         '''
