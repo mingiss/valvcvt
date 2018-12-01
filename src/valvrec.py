@@ -17,6 +17,7 @@ __email__ = "mpiesina@netscape.net"
 __status__ = "Prototype"
 
 import sys
+import os
 import copy
 
 try:
