@@ -28,9 +28,7 @@ Metrisch/UNC: ['METRIC', 'METRIC', 'METRIC', 'METRIC']
 B9:D12
 Metrisch/UNC: ['UNC', 'UNC', 'UNC', 'UNC']
 Processing file: cartridge.orig.xml
-Error: Data segment A2:C9 has no heading ['Type', 'PN [bar]', 'filename [.stp]']
 A2:C9
-Error: Data segment A2:C9 has no heading ['Type', 'PN [bar]', 'filename [.stp]']
 A2:C9
 Processing file: 2-way_SAE.xml
 C4:E9

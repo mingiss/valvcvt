@@ -87,7 +87,7 @@ class DataSeg:
     def __init__(self):
         self.xx = 0
         self.yy = 0
-        self.length = 1 # number of rows in the segment
+        self.length = 0 # number of rows in the segment
         self.headings = [] # list of SegHeadingCol's
 
     def location(self):
@@ -230,6 +230,7 @@ class ValvRecTree(XlsTree):
                     new_seg = DataSeg()
                     new_seg.xx = col_ix
                     new_seg.yy = row_ix
+                    new_seg.length = 1
 
                     for seg_row_ix in range(row_ix + 1, len(self.in_data)):
                         found = False
