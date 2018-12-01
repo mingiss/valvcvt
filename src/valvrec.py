@@ -118,6 +118,17 @@ class ValvRecTree(XlsTree):
     def scan_in_data(self, table):
         '''scanning input data from table node to self.in_data'''
 
+        # name of the worksheet
+        ws = table.getparent()
+        self.ws_name = ws.get(XlsTree.ns_pref + 'Name')
+
+        # material heading as a worksheet name suffix
+        self.material = ''
+        for mat in SegHeadingCol.class_attribs['Material']:
+            if mat in self.ws_name:
+                self.material = mat
+                break
+
         # array of input rows -- arrays of tupplets, each conforming to layout InCellLayout
         self.in_data = []
 
@@ -220,6 +231,24 @@ class ValvRecTree(XlsTree):
             cur_head = SegHeadingCol()
             cur_head.values = [os.path.splitext(os.path.basename(self.fname))[0]] * data_seg.length
             data_seg.headings['Kategorie'] = cur_head
+
+        if (not 'Material' in data_seg.headings.keys()):
+            cur_head = SegHeadingCol()
+            cur_head.values = [self.material] * data_seg.length
+            data_seg.headings['Material'] = cur_head
+
+            # shortening worksheet name after the first assignment of the common material value
+            if (self.material):
+                ws_name_elems = self.ws_name.split(self.material)
+                if (len(ws_name_elems) > 1):
+                    if ((len(ws_name_elems) == 2) and (not ws_name_elems[1])):
+                        self.ws_name = ws_name_elems[0]
+                    else:
+                        print('Error: worksheet name suffix as a material key is ambiguous: ' + self.ws_name)
+
+
+
+
 
 
     def search_data_pattern(self, prev_seg):
