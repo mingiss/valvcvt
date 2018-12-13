@@ -8,10 +8,12 @@ Concatenates tables of multiple `Microsoft Excel 2003 XML` files in particular v
 Spreads minor and major headings, sheet and file names to the start of the exported rows.
 
 Using:
-    python valvcvt.py input.xml output.xml csv
+    python valvcvt.py input_list.txt output.xml csv
 
-Third optional parameter -- output format
-At the moment could be `csv` (default) or `xml` (the latter for files in `Microsoft Excel 2003 XML` format)
+        input_list.txt -- text file with the list of input xml file names
+
+        the third optional parameter -- output format
+            at the moment could be `csv` (default) or `xml` (the latter for files in `Microsoft Excel 2003 XML` format)
 """
 
 __author__ = "Mindaugas Piešina"
@@ -170,7 +172,7 @@ class valvtree(XlsTree):
 def main():
 
     if (len(sys.argv) < 3):
-        print('Error: Give input and output file names as parameters')
+        print('Error: Give input list and output file names as parameters')
         sys.exit(2)
 
     in_flist_fname = sys.argv[1]

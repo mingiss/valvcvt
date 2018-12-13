@@ -24,7 +24,7 @@ TODO list
 1.  * Make `xlstree.export_csv()`
     * Implement it into `valvcvt.py` &ndash; add third parameter &ndash; output format &ndash; `csv` or `xlsx`.
 
-1. README.md
+1. > done: README.md
 
 1. pydoc
 
@@ -51,3 +51,5 @@ At the moment only the very first worksheet tables are concatenated.
 1. Fix `prod/trim.sh` to skip `README.txt`.
 
 1. Clone `lib` from `kppylib`.
+
+1. Something wrong with the `test/test_xlstrim.sh` -- a couple of file pairs `test/*.orig.xml` and `test/*.xml` are equal

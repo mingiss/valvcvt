@@ -8,7 +8,8 @@ Extracts data segments from multiple `Microsoft Excel 2003 XML` files in particu
 without binding them to particular coordinates on the worksheet.
 
 Using:
-    python valvrec.py input.xml output.xml
+    python valvrec.py input_list.txt output.xml
+        input_list.txt -- text file with the list of input xml file names
 """
 
 __author__ = "Mindaugas Piešina"
@@ -409,7 +410,7 @@ class ValvRecTree(XlsTree):
 def main():
 
     if (len(sys.argv) < 3):
-        print('Error: Give input and output file names as parameters')
+        print('Error: Give input list and output file names as parameters')
         sys.exit(2)
 
     in_flist_fname = sys.argv[1]
